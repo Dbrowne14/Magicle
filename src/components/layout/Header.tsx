@@ -1,9 +1,8 @@
-import React from 'react'
 
 const Header = () => {
   return (
     <nav>
-      <div></div>
+      <div className="w-full h-10 bg-black"></div>
     </nav>
   )
 }
