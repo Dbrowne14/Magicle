@@ -9,7 +9,7 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div>
+    <div className="w-full min-h-screen">
       <header>
         <Header />{" "}
       </header>
