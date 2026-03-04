@@ -1,8 +1,7 @@
 
 const Header = () => {
   return (
-    <nav>
-      <div className="w-full h-10 bg-black"></div>
+    <nav className="h-full bg-black">
     </nav>
   )
 }

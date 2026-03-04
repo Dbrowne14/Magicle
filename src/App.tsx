@@ -1,14 +1,11 @@
 import { Layout } from "./components/layout/Layout";
-
+import Gameboard from "./components/game/Gameboard";
 const gameState = "active";
 
 function App() {
   return (
     <Layout>
-      <div className="w-full bg-[rgba(1,1,1,0.7)] text-white">
-        {" "}
-        Gameboard
-      </div>
+      <Gameboard />
     </Layout>
   );
 }
