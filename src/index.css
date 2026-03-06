@@ -23,7 +23,7 @@ a:hover {
 }
 
 body {
-  @apply m-0 flex place-items-center min-h-screen bg-[rgba(1,1,1,0.9)] ;
+  @apply m-0 flex place-items-center min-h-screen bg-[rgba(1,1,1,0.9)] text-white ;
 }
 
 h1 {
