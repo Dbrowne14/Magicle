@@ -1,13 +1,14 @@
+import GameInfoCard from "./GameInfoCard"
 
 const GameOutput = () => {
-   const n = new Array(8)
+   const n = new Array(8).fill(1)
   return (
     <div className="flex flex-1 flex-col h-full">
         <div className="h-40 border-b border-white"></div>
-        <div className="flex-1 flex-wrap">
+        <div className="flex-1 flex flex-wrap justify-center items-center">
             {n.map((input, key) => {
                 return (
-                    <div id={input} key={key} className="border border-white h-10 w-10"> </div>
+                    <GameInfoCard id={input} key={key}/>
                 )
             })}
         </div>
