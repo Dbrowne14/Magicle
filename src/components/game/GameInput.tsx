@@ -1,8 +1,8 @@
 
 const GameInput = () => {
   return (
-    <div>
-      
+    <div className="h-12 border-b border-b-white text-white">
+      SearchBar
     </div>
   )
 }
