@@ -1,11 +1,17 @@
+
 type Input = {
-  id: string;
-  key: number;
+  key: string
+  value: string | number;
+  label: string
 };
 
-const GameInfoCard = ({ id, key }: Input) => {
+const GameInfoCard = ({ key, value, label }: Input) => {
+
   return (
-    <div id={id} key={key} className="border border-white h-[40%] w-22"></div>
+    <div key={key} className="border border-white h-[40%] w-22 text-center">
+      <div className='h-[50%] border-b border-b-white'>{label}</div>
+      <div className='h-[50%] border-b border-b-white'>{value}</div>
+    </div>
   );
 };
 

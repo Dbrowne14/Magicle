@@ -1,4 +1,4 @@
-type data ={
+export type data ={
     cmc: number;
     recentPrint: string,
     rarity: "C" | "U" | "R" | "M",
@@ -9,14 +9,14 @@ type data ={
     price: number
 }
 
-const dummyData = {
-    cmc: 7,
-    recentPrint: "LOTR",
-    rarity: "M",
-    cardType: "sorcery",
-    pip: "Green",
-    printYear: 2023,
-    colorCount: 1,
-    price: 20.00,
+export const dummyData = {
+    CMC: 7,
+    Print: "LOTR",
+    Rarity: "M",
+    CardType: "sorcery",
+    Pip: "Green",
+    Year: 2023,
+    Colours: 1,
+    Price: 20.00,
     
 }
