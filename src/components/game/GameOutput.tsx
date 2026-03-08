@@ -8,7 +8,7 @@ const GameOutput = () => {
     <div className="flex flex-1 flex-col h-full">
         <GuessName/>
         <div className="flex-1 flex flex-wrap justify-center items-center">
-            {Object.entries(dummyData).map(([key, value]) => {
+            {Object.entries(dummyData).filter(([key,_])=> key!== "img").map(([key, value]) => {
                 return (
                     <GuessInfoCard key={key} label={key} value={value}/>
                 )

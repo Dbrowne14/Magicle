@@ -1,3 +1,5 @@
+import dummyImg from "../assets/ltr-172-last-march-of-the-ents.jpg"
+
 export type data ={
     cmc: number;
     recentPrint: string,
@@ -18,5 +20,8 @@ export const dummyData = {
     Year: 2023,
     Colours: 1,
     Price: 20.00,
+    img:dummyImg
     
 }
+
+export const cardList = ["Last March of the Ents"]
