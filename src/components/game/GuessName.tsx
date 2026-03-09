@@ -1,4 +1,3 @@
-import defaultMTGCard from "../../assets/Magic_card_back.png"
 
 type CardName = {
     cardKey: string;

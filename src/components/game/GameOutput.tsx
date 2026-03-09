@@ -2,12 +2,11 @@ import GuessInfoCard from "./GuessInfoCard";
 import GuessName from "./GuessName";
 import { cardsData } from "../../data/dummyData";
 
-const GameOutput = () => {
-  const guess = "Last March of the Ents";
-  const guessData = cardsData[guess];
+const GameOutput = ({guessState}: {guessState: string}) => {
+  const guessData = guessState ? cardsData[guessState]: undefined;
   return (
     <div className="flex flex-1 flex-col h-full">
-      <GuessName key={guess} cardKey={guess} name={guess} img={guessData.img} />
+      <GuessName key={guessState} cardKey={guessState} name={guessState} img={guessData.img} />
 
       <div className="flex-1 flex flex-wrap justify-center items-center">
         {Object.entries(guessData)

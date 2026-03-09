@@ -1,5 +1,5 @@
 
-const GameInput = () => {
+const GameInput = ({setGuessState}) => {
   return (
     <div className="h-12 border-b border-b-white text-white">
       SearchBar

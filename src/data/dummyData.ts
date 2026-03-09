@@ -40,14 +40,14 @@ export const cardsData = {
   },
   "Ents March Again": {
     img: dummyImg,
-    cmc: 5,
-    recentPrint: "LOTR",
-    rarity: "R",
-    cardType: "creature",
-    pip: "Green",
-    printYear: 2022,
-    colorCount: 2,
-    price: 15.0,
+    CMC: 5,
+    RecentPrint: "LOTR",
+    Rarity: "R",
+    CardType: "creature",
+    Pip: "Green",
+    PrintYear: 2022,
+    ColorCount: 2,
+    Price: 15.0,
   },
 };
 
