@@ -5,7 +5,7 @@ type GuessProps = {
 const GameInput = ({ setGuessState }:GuessProps) => {
   return (
     <div className="h-12 border-b border-b-white text-white">
-      <form onSubmit={((e)=> {e.preventDefault; setGuessState(e.target.value)})}>
+      <form onSubmit={((e)=> {e.preventDefault; setGuessState(e.target.value)})} className="inline-flex">
         <input type="search" placeholder="Search..." />
         <button>Search</button>
       </form>
