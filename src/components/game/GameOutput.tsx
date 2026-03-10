@@ -30,3 +30,4 @@ const GameOutput = ({guessState}: {guessState: string}) => {
 };
 
 export default GameOutput;
+   
