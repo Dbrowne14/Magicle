@@ -1,23 +1,44 @@
-
 import { cardsData } from "../../data/dummyData";
+import { useState, useEffect } from "react";
 
 type GuessProps = {
   setGuessState: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const GameInput = ({ setGuessState }:GuessProps) => {
+const GameInput = ({ setGuessState }: GuessProps) => {
+  const [query, setQuery] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const data = Object.keys(cardsData);
+
+  useEffect(() => {
+    if (!query) {
+      setSuggestions([]);
+      return;
+    }
+
+    const filtered = data.filter((item) => {
+      return item.toLowerCase().includes(query.toLowerCase());
+    });
+
+    setSuggestions(filtered.slice(0, 10));
+  }, [query, data]);
+
   return (
     <div className="h-12 border-b border-b-white text-white">
-      <form onSubmit={((e)=> {e.preventDefault; setGuessState(e.target.value)})} className="inline-flex">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault;
+          setGuessState(e.target.value);
+        }}
+        className="inline-flex"
+      >
         <input placeholder="Search..." />
-        <button>Search</button>
       </form>
     </div>
   );
 };
 
 export default GameInput;
-
 
 /* 
 
@@ -27,15 +48,9 @@ import React, { useState, useEffect } from "react";
 
 export default function AutoComplete() {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
 
-  // Load API data once
-  useEffect(() => {
-    fetch("/api/items")
-      .then(res => res.json())
-      .then(items => setData(items));
-  }, []);
+
 
   // Filter suggestions when typing
   useEffect(() => {
