@@ -2,10 +2,11 @@ import { cardsData } from "../../data/dummyData";
 import { useState, useEffect } from "react";
 
 type GuessProps = {
+  guessState: string;
   setGuessState: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const GameInput = ({ setGuessState }: GuessProps) => {
+const GameInput = ({ guessState, setGuessState }: GuessProps) => {
   const [query, setQuery] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const data = Object.keys(cardsData);
@@ -24,15 +25,19 @@ const GameInput = ({ setGuessState }: GuessProps) => {
   }, [query, data]);
 
   return (
-    <div className="h-12 border-b border-b-white text-white">
+    <div className="h-12 border-b border-b-white text-white relative">
       <form
         onSubmit={(e) => {
           e.preventDefault;
           setGuessState(e.target.value);
+          setQuery(e.target.value)
         }}
         className="inline-flex"
       >
-        <input placeholder="Search..." />
+        <input type="text" value={query} placeholder="Search..." onChange={(e) => {
+          e.preventDefault;
+          setGuessState(e.target.value);
+        }} />
       </form>
     </div>
   );
@@ -49,24 +54,6 @@ import React, { useState, useEffect } from "react";
 export default function AutoComplete() {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
-
-
-  // Filter suggestions when typing
-  useEffect(() => {
-    if (!query) {
-      setSuggestions([]);
-      return;
-    }
-
-    const filtered = data
-      .filter(item =>
-        item.name.toLowerCase().includes(query.toLowerCase())
-      )
-      .slice(0, 10);
-
-    setSuggestions(filtered);
-  }, [query, data]);
 
   return (
     <div style={{ width: "300px", position: "relative" }}>
