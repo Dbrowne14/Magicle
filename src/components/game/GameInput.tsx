@@ -41,7 +41,18 @@ const GameInput = ({ guessState, setGuessState }: GuessProps) => {
             e.preventDefault;
             setGuessState(e.target.value);
           }}
+          className="width-[100%]"
         />
+
+        {suggestions.length > 0 && (
+          <ul className="absolute m-0 p-0 bg-white max-h-3 overflow-y-auto">
+            {suggestions.map((item, id) => (
+              <li key={id} className="p-2" onClick={() => setGuessState(item)}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
       </form>
     </div>
   );
