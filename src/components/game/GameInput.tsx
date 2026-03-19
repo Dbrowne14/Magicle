@@ -18,7 +18,7 @@ const GameInput = ({ guessState, setGuessState }: GuessProps) => {
     }
 
     const filtered = data.filter((item) => {
-      return item.toLowerCase().includes(query.toLowerCase());
+      return item.toLowerCase().includes(guessState.toLowerCase());
     });
 
     setSuggestions(filtered.slice(0, 10));
@@ -30,14 +30,18 @@ const GameInput = ({ guessState, setGuessState }: GuessProps) => {
         onSubmit={(e) => {
           e.preventDefault;
           setGuessState(e.target.value);
-          setQuery(e.target.value)
         }}
         className="inline-flex"
       >
-        <input type="text" value={query} placeholder="Search..." onChange={(e) => {
-          e.preventDefault;
-          setGuessState(e.target.value);
-        }} />
+        <input
+          type="text"
+          value={query}
+          placeholder="Search..."
+          onChange={(e) => {
+            e.preventDefault;
+            setGuessState(e.target.value);
+          }}
+        />
       </form>
     </div>
   );
