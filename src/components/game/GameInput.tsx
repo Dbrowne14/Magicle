@@ -7,12 +7,11 @@ type GuessProps = {
 };
 
 const GameInput = ({ guessState, setGuessState }: GuessProps) => {
-  const [query, setQuery] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const data = Object.keys(cardsData);
 
   useEffect(() => {
-    if (!query) {
+    if (!guessState) {
       setSuggestions([]);
       return;
     }
@@ -22,7 +21,7 @@ const GameInput = ({ guessState, setGuessState }: GuessProps) => {
     });
 
     setSuggestions(filtered.slice(0, 10));
-  }, [query, data]);
+  }, [guessState, data]);
 
   return (
     <div className="h-12 border-b border-b-white text-white relative">
@@ -35,7 +34,7 @@ const GameInput = ({ guessState, setGuessState }: GuessProps) => {
       >
         <input
           type="text"
-          value={query}
+          value={guessState}
           placeholder="Search..."
           onChange={(e) => {
             e.preventDefault;
