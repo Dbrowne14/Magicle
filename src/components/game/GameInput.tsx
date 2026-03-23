@@ -43,6 +43,7 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
       >
         <input
           type="text"
+          name="SearchBar"
           value={roundGuess}
           placeholder="Search..."
           onChange={(e) => {
