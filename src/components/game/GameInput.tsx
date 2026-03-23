@@ -19,26 +19,26 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
       return;
     }
 
-    const filtered = data.filter((item) => {
-      return item.toLowerCase().includes(guessState[round].toLowerCase());
+   const dataNewSuggestions = data.filter(item => !guessState.includes(item))
+   console.log('filtereddata',dataNewSuggestions)
+
+    const filtered = dataNewSuggestions.filter((item) => {
+      return item.toLowerCase().includes(roundGuess.toLowerCase());
     });
 
     setSuggestions(filtered.slice(0, 10));
-    console.log(suggestions)
   }, [roundGuess, data]);
 
   const handleGuess = (guess: string) => {
     setGuessState((prev)=> [...prev, guess]);
-    setRound(round++);
+    setRound((prev) => prev + 1);
+      console.log('GuessState Input:',guessState)
+    setRoundGuess("");
   }
 
   return (
     <div className="h-12 border-b border-b-white text-white relative">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault;
-          setGuessState(e.target.value);
-        }}
+      <div
         className="inline-flex"
       >
         <input
@@ -61,7 +61,7 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
             ))}
           </ul>
         )}
-      </form>
+      </div>
     </div>
   );
 };

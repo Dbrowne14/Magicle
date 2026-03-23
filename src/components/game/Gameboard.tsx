@@ -6,7 +6,7 @@ import { useState } from "react"
 
 const Gameboard = () => {
   const [guessState,setGuessState] = useState<string[]>([]);
-  const [round, setRound] = useState<number>(0);
+  const [round, setRound] = useState<number>(-1);
   return (
     <div className='h-full flex flex-col gap-8 justify-center items-center'>
       <h1 className="text-white">Magicle</h1>

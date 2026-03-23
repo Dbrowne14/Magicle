@@ -11,7 +11,10 @@ type Output = {
 };
 
 const GameOutput = ({guessState, round}: Output) => {
+  console.log('GuessState Ourput:',guessState)
+  console.log('round',round)
   const currentGuess = guessState[round];
+  console.log('currentGuess:',currentGuess)
   const guessData = (currentGuess as CardKey) ? cardsData[currentGuess as CardKey]: undefined;
   return (
     <div className="flex flex-1 flex-col h-full">
