@@ -30,7 +30,7 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
   }, [roundGuess, data]);
 
   const handleGuess = (guess: string) => {
-    setGuessState((prev)=> [...prev, guess]);
+    setGuessState((prev)=> [guess, ...prev]);
     setRound((prev) => prev + 1);
       console.log('GuessState Input:',guessState)
     setRoundGuess("");
