@@ -29,7 +29,7 @@ const GameOutput = ({ guessState }: Output) => {
 
             <div className="flex-1 flex flex-wrap justify-center items-center">
               {Object.entries(guessData ?? {})
-                .filter(([key, _]) => key !== "img" && key !== "name")
+                .filter(([key, _]) => key !== "img" && key !== "name" && key!== "Rarity" && key!=="CardType")
                 .map(([key, value]) => {
                   return (
                     <GuessInfoCard

@@ -37,9 +37,9 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
   }
 
   return (
-    <div className="h-12 border-b border-b-white text-white relative">
+    <div className="h-12 border-b border-b-white text-white inline-flex ">
       <div
-        className="inline-flex"
+        className="inline-flex relative w-[60%]"
       >
         <input
           type="text"
@@ -49,11 +49,11 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
             e.preventDefault;
             setRoundGuess(e.target.value);
           }}
-          className="width-[100%]"
+          className="w-full"
         />
 
         {suggestions.length > 0 && (
-          <ul className="absolute m-0 p-0 bg-white text-black max-h-20 overflow-y-auto">
+          <ul className="absolute m-0 p-0 bg-white text-black max-h-20 overflow-y-auto w-full">
             {suggestions.map((item, id) => (
               <li key={id} className="p-2 text-[1rem]" onClick={() => handleGuess(item)}>
                 {item}
@@ -61,6 +61,9 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
             ))}
           </ul>
         )}
+      </div>
+      <div className="flex items-center">
+        <h2 className="text-center">Guess {round + 1} of 10</h2>
       </div>
     </div>
   );

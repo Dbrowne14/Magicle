@@ -49,6 +49,16 @@ export const cardsData = {
     ColorCount: 2,
     Price: 15.0,
   },
+    "Mast larch": {
+    img: dummyImg,
+    CMC: 5,
+    RecentPrint: "LOTR",
+    Rarity: "R",
+    CardType: "creature",
+    Pip: "Green",
+    PrintYear: 2022,
+    ColorCount: 2,
+    Price: 15.0,}
 };
 
 export const cardList = ["Last March of the Ents"];
