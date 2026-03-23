@@ -22,7 +22,6 @@ const GameOutput = ({ guessState }: Output) => {
             <GuessName
               key={guess}
               cardKey={guess}
-              name={guess}
               guess={guessData}
             />
 
