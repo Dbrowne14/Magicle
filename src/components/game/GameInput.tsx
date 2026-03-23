@@ -2,26 +2,35 @@ import { cardsData } from "../../data/dummyData";
 import { useState, useEffect } from "react";
 
 type GuessProps = {
-  guessState: string;
-  setGuessState: React.Dispatch<React.SetStateAction<string>>;
+  guessState: string[];
+  setGuessState: React.Dispatch<React.SetStateAction<string[]>>;
+  round: number;
+  setRound: React.Dispatch<React.SetStateAction<number>>
 };
 
-const GameInput = ({ guessState, setGuessState }: GuessProps) => {
+const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [roundGuess, setRoundGuess] = useState<string>("");
   const data = Object.keys(cardsData);
 
   useEffect(() => {
-    if (!guessState) {
+    if (!roundGuess) {
       setSuggestions([]);
       return;
     }
 
     const filtered = data.filter((item) => {
-      return item.toLowerCase().includes(guessState.toLowerCase());
+      return item.toLowerCase().includes(guessState[round].toLowerCase());
     });
 
     setSuggestions(filtered.slice(0, 10));
-  }, [guessState, data]);
+    console.log(suggestions)
+  }, [roundGuess, data]);
+
+  const handleGuess = (guess: string) => {
+    setGuessState((prev)=> [...prev, guess]);
+    setRound(round++);
+  }
 
   return (
     <div className="h-12 border-b border-b-white text-white relative">
@@ -34,19 +43,19 @@ const GameInput = ({ guessState, setGuessState }: GuessProps) => {
       >
         <input
           type="text"
-          value={guessState}
+          value={roundGuess}
           placeholder="Search..."
           onChange={(e) => {
             e.preventDefault;
-            setGuessState(e.target.value);
+            setRoundGuess(e.target.value);
           }}
           className="width-[100%]"
         />
 
         {suggestions.length > 0 && (
-          <ul className="absolute m-0 p-0 bg-white max-h-3 overflow-y-auto">
+          <ul className="absolute m-0 p-0 bg-white text-black max-h-20 overflow-y-auto">
             {suggestions.map((item, id) => (
-              <li key={id} className="p-2" onClick={() => setGuessState(item)}>
+              <li key={id} className="p-2 text-[1rem]" onClick={() => handleGuess(item)}>
                 {item}
               </li>
             ))}
