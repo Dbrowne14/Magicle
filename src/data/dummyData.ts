@@ -1,33 +1,24 @@
 import dummyImg from "../assets/ltr-172-last-march-of-the-ents.jpg";
 
-export type data = {
+export type Card = {
   name: string;
   img: string;
-  cmc: number;
-  recentPrint: string;
-  rarity: "C" | "U" | "R" | "M";
-  cardType: string;
-  pip: string;
-  printYear: number;
-  colorCount: number;
-  price: number;
+  CMC: number;
+  Print?: string;
+  Rarity: "C" | "U" | "R" | "M";
+  CardType: string;
+  Pip: string;
+  Year?: number;
+  Colours?: number;
+  Price: number;
 };
 
-export const dummyData = {
-  name: "Last March of the Ents",
-  img: dummyImg,
-  CMC: 7,
-  Print: "LOTR",
-  Rarity: "M",
-  CardType: "sorcery",
-  Pip: "Green",
-  Year: 2023,
-  Colours: 1,
-  Price: 20.0,
-};
+export type CardData = Record<string, Card>;
 
-export const cardsData = {
+
+export const cardsData: CardData = {
   "Last March of the Ents": {
+    name: "Last March of the Ents",
     img: dummyImg,
     CMC: 7,
     Print: "LOTR",
@@ -39,26 +30,29 @@ export const cardsData = {
     Price: 20.0,
   },
   "Ents March Again": {
+    name: "Ents March Again",
     img: dummyImg,
     CMC: 5,
-    RecentPrint: "LOTR",
+    Print: "LOTR",
     Rarity: "R",
     CardType: "creature",
     Pip: "Green",
-    PrintYear: 2022,
-    ColorCount: 2,
+    Year: 2022,
+    Colours: 2,
     Price: 15.0,
   },
-    "Mast larch": {
+  "Mast larch": {
+    name: "Mast larch",
     img: dummyImg,
     CMC: 5,
-    RecentPrint: "LOTR",
+    Print: "LOTR",
     Rarity: "R",
     CardType: "creature",
     Pip: "Green",
-    PrintYear: 2022,
-    ColorCount: 2,
-    Price: 15.0,}
+    Year: 2022,
+    Colours: 2,
+    Price: 15.0,
+  },
 };
 
 export const cardList = ["Last March of the Ents"];

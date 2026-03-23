@@ -1,9 +1,7 @@
 import GuessInfoCard from "./GuessInfoCard";
 import GuessName from "./GuessName";
 import { cardsData } from "../../data/dummyData";
-import defaultMtgCard from "../../assets/Magic_card_back.png";
-
-type CardKey = keyof typeof cardsData;
+import type { Card } from "../../data/dummyData";
 
 type Output = {
   guessState: string[];
@@ -15,21 +13,28 @@ const GameOutput = ({ guessState }: Output) => {
   return (
     <div className="flex flex-col gap-10">
       {guessState.map((guess, key) => {
-        const guessData = (guess as CardKey)
-          ? cardsData[guess as CardKey]
-          : undefined;
+        const guessData: Card | undefined = cardsData[guess];
+
+        if (!guessData) return null;
+
         return (
           <div className="flex flex-1 flex-col h-full" key={key}>
             <GuessName
               key={guess}
               cardKey={guess}
               name={guess}
-              img={guessData?.img || defaultMtgCard}
+              guess={guessData}
             />
 
             <div className="flex-1 flex flex-wrap justify-center items-center">
               {Object.entries(guessData ?? {})
-                .filter(([key, _]) => key !== "img" && key !== "name" && key!== "Rarity" && key!=="CardType")
+                .filter(
+                  ([key, _]) =>
+                    key !== "img" &&
+                    key !== "name" &&
+                    key !== "Rarity" &&
+                    key !== "CardType",
+                )
                 .map(([key, value]) => {
                   return (
                     <GuessInfoCard
