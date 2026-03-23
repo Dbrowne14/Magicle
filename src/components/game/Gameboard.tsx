@@ -9,7 +9,7 @@ const Gameboard = () => {
   const [round, setRound] = useState<number>(-1);
   return (
     <div className='h-full flex flex-col gap-8 justify-center items-center'>
-      <h1 className="text-white">Magicle</h1>
+      <h1 className="text-white">Staple</h1>
         <div className='flex flex-col h-120 w-90 border border-white'>
             <GameInput setGuessState={setGuessState} guessState={guessState} round={round} setRound = {setRound}/>
             <GameOutput guessState={guessState} round={round}/>
