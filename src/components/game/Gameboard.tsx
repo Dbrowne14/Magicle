@@ -2,24 +2,28 @@ import GameInput from "./GameInput";
 import GameOutput from "./GameOutput";
 import { useState, useEffect } from "react";
 import { cardsData } from "../../data/dummyData";
+import EndState from "./EndState";
 
 const todaysAnswer = Object.keys(cardsData)[0];
-const roundLimit = 10
+const roundLimit = 10;
 
 const Gameboard = () => {
   const [guessState, setGuessState] = useState<string[]>([]);
   const [endGame, setEndgame] = useState(false);
   const [round, setRound] = useState<number>(0);
+  const [result, setResult] = useState("");
 
   useEffect(() => {
     if (round >= roundLimit) {
       setEndgame(true);
       console.log("Lose conditon");
       console.log(endGame);
+      setResult("Lose");
     }
     if (guessState.includes(todaysAnswer)) {
       console.log("Win conditon");
       setEndgame(true);
+      setResult("Win");
     }
 
     console.log("effect ran:", guessState);
@@ -34,14 +38,21 @@ const Gameboard = () => {
           guessState={guessState}
           round={round}
           setRound={setRound}
-          endGame ={endGame}
+          endGame={endGame}
         />
         <GameOutput guessState={guessState} round={round} />
       </div>
+      {endGame && (
+        <EndState
+          img={cardsData[todaysAnswer].img}
+          todaysAnswer={todaysAnswer}
+          result={result}
+        />
+      )};
     </div>
   );
 };
 
 export default Gameboard;
 
-//<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-[rgba(1,1,1,0.8)] w-80 h-80 rounded-2xl"></div>
+//
