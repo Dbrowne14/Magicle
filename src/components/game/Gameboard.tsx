@@ -3,8 +3,9 @@ import GameOutput from "./GameOutput";
 import { useState, useEffect } from "react";
 import { cardsData } from "../../data/dummyData";
 import EndState from "./EndState";
+import { todaysAnswer, todaysName } from "../../data/dummyData";
 
-const todaysAnswer = Object.keys(cardsData)[0];
+
 const roundLimit = 10;
 
 const Gameboard = () => {
@@ -20,7 +21,7 @@ const Gameboard = () => {
       console.log(endGame);
       setResult("Lose");
     }
-    if (guessState.includes(todaysAnswer)) {
+    if (guessState.includes(todaysName)) {
       console.log("Win conditon");
       setEndgame(true);
       setResult("Win");
@@ -40,19 +41,15 @@ const Gameboard = () => {
           setRound={setRound}
           endGame={endGame}
         />
-        <GameOutput guessState={guessState} round={round} />
+        <GameOutput guessState={guessState} />
       </div>
       {endGame && (
         <EndState
-          img={cardsData[todaysAnswer].img}
-          todaysAnswer={todaysAnswer}
           result={result}
         />
-      )};
+      )}
     </div>
   );
 };
 
 export default Gameboard;
-
-//

@@ -16,6 +16,7 @@ export type Card = {
 export type CardData = Record<string, Card>;
 
 
+
 export const cardsData: CardData = {
   "Last March of the Ents": {
     name: "Last March of the Ents",
@@ -157,5 +158,8 @@ export const cardsData: CardData = {
   Price: 5.5,
 }
 };
+
+export const todaysName = Object.keys(cardsData)[0];
+export const todaysAnswer = cardsData[todaysName];
 
 export const cardList = ["Last March of the Ents"];

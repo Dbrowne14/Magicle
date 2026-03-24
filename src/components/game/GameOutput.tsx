@@ -5,10 +5,9 @@ import type { Card } from "../../data/dummyData";
 
 type Output = {
   guessState: string[];
-  round: number;
 };
 
-const GameOutput = ({ guessState }: Output) => {
+const GameOutput = ({ guessState}: Output) => {
   console.log("GuessState Ourput:", guessState);
   return (
     <div className="flex flex-col gap-10">
