@@ -6,9 +6,10 @@ type GuessProps = {
   setGuessState: React.Dispatch<React.SetStateAction<string[]>>;
   round: number;
   setRound: React.Dispatch<React.SetStateAction<number>>
+  endGame : boolean;
 };
 
-const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) => {
+const GameInput = ({ guessState, setGuessState, round, setRound, endGame }: GuessProps) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [roundGuess, setRoundGuess] = useState<string>("");
   const data = Object.keys(cardsData);
@@ -45,6 +46,7 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
           type="text"
           name="SearchBar"
           value={roundGuess}
+          disabled={endGame}
           placeholder="Search..."
           onChange={(e) => {
             e.preventDefault;
@@ -71,63 +73,3 @@ const GameInput = ({ guessState, setGuessState, round, setRound }: GuessProps) =
 };
 
 export default GameInput;
-
-/* 
-
-hel[ful code to workd this out - for dummy data only need two states 
-
-import React, { useState, useEffect } from "react";
-
-export default function AutoComplete() {
-  const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-
-  return (
-    <div style={{ width: "300px", position: "relative" }}>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "8px",
-          boxSizing: "border-box"
-        }}
-      />
-
-      {suggestions.length > 0 && (
-        <ul
-          style={{
-            listStyle: "none",
-            margin: 0,
-            padding: 0,
-            border: "1px solid #ccc",
-            borderTop: "none",
-            position: "absolute",
-            width: "100%",
-            background: "white",
-            maxHeight: "200px",
-            overflowY: "auto"
-          }}
-        >
-          {suggestions.map((item) => (
-            <li
-              key={item.id}
-              style={{
-                padding: "8px",
-                cursor: "pointer"
-              }}
-              onClick={() => {
-                setQuery(item.name);
-                setSuggestions([]);
-              }}
-            >
-              {item.name}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-} */

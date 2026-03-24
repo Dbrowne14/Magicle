@@ -34,6 +34,7 @@ const Gameboard = () => {
           guessState={guessState}
           round={round}
           setRound={setRound}
+          endGame ={endGame}
         />
         <GameOutput guessState={guessState} round={round} />
       </div>
