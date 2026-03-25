@@ -19,14 +19,14 @@ const GameOutput = ({ guessState}: Output) => {
 
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 border border-white">
       {guessState.map((guess, key) => {
         const guessData: Card | undefined = cardsData[guess];
 
         if (!guessData) return null;
 
         return (
-          <div className="flex flex-1 flex-col h-full" key={key}>
+          <div className="flex flex-1 flex-col h-full border border-white" key={key}>
             <GuessName
               key={guess}
               cardKey={guess}

@@ -38,7 +38,7 @@ const GameInput = ({ guessState, setGuessState, round, setRound, endGame }: Gues
   }
 
   return (
-    <div className="h-12 border-b border-b-white text-white inline-flex ">
+    <div className="h-12 border border-white text-white inline-flex ">
       <div
         className="inline-flex relative w-[60%]"
       >
