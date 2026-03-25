@@ -12,7 +12,7 @@ export type Input = {
 
 const variableOrange = {
   CMC: 2,
-  Year: 5,
+  Year: 3,
   Price: 5,
 } as const;
 
