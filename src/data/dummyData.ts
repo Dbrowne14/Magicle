@@ -4,12 +4,12 @@ export type Card = {
   name: string;
   img: string;
   CMC: number;
-  Print?: string;
+  Print: string;
   Rarity: "C" | "U" | "R" | "M";
   CardType: string;
   Pip: string;
-  Year?: number;
-  Colours?: number;
+  Year: number;
+  Colours: number;
   Price: number;
 };
 

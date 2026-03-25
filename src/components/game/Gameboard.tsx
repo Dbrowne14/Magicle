@@ -1,10 +1,8 @@
 import GameInput from "./GameInput";
 import GameOutput from "./GameOutput";
 import { useState, useEffect } from "react";
-import { cardsData } from "../../data/dummyData";
 import EndState from "./EndState";
-import { todaysAnswer, todaysName } from "../../data/dummyData";
-
+import { todaysName } from "../../data/dummyData";
 
 const roundLimit = 10;
 
@@ -43,11 +41,7 @@ const Gameboard = () => {
         />
         <GameOutput guessState={guessState} />
       </div>
-      {endGame && (
-        <EndState
-          result={result}
-        />
-      )}
+      {endGame && <EndState result={result} />}
     </div>
   );
 };

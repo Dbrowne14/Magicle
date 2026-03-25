@@ -8,7 +8,12 @@ type Output = {
 };
 
 const GameOutput = ({ guessState}: Output) => {
-  console.log("GuessState Ourput:", guessState);
+  console.log("GuessState Output:", guessState);
+  function typedEntries<T extends object>(obj: T) {
+  return Object.entries(obj) as {
+    [K in keyof T]: [K, T[K]];
+  }[keyof T][];
+}
   return (
     <div className="flex flex-col gap-10">
       {guessState.map((guess, key) => {
@@ -25,9 +30,9 @@ const GameOutput = ({ guessState}: Output) => {
             />
 
             <div className="flex-1 flex flex-wrap justify-center items-center">
-              {Object.entries(guessData ?? {})
+              {typedEntries(guessData ?? {})
                 .filter(
-                  ([key, _]) =>
+                  ([key]) =>
                     key !== "img" &&
                     key !== "name" &&
                     key !== "Rarity" &&
