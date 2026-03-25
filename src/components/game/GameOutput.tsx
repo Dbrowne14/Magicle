@@ -9,11 +9,15 @@ type Output = {
 
 const GameOutput = ({ guessState}: Output) => {
   console.log("GuessState Output:", guessState);
+  
   function typedEntries<T extends object>(obj: T) {
-  return Object.entries(obj) as {
+    return Object.entries(obj) as {
     [K in keyof T]: [K, T[K]];
-  }[keyof T][];
-}
+    }[keyof T][];
+  }
+
+
+
   return (
     <div className="flex flex-col gap-10">
       {guessState.map((guess, key) => {
