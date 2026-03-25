@@ -21,7 +21,7 @@ type VariableOrange = keyof typeof variableOrange;
 type validInCard = Extract<VariableOrange, keyof Card>;
 
 const GameInfoCard = ({ cardKey, value, label }: Input) => {
-  
+  const lookUpKey = todaysAnswer[cardKey];
   function checkforKeyName(key: keyof Card): key is validInCard {
     if (cardKey in variableOrange) {
       return true;
@@ -32,9 +32,9 @@ const GameInfoCard = ({ cardKey, value, label }: Input) => {
   function getColorByCard(
     cardKey: CardKey,
     value: value,
-    answer: string | number,) {
-
-    if (value === todaysAnswer[cardKey]) return "bg-green-800";
+    answer: string | number,
+  ) {
+    if (value === lookUpKey) return "bg-green-800";
 
     if (checkforKeyName(cardKey)) {
       const boundary = variableOrange[cardKey];
@@ -50,15 +50,27 @@ const GameInfoCard = ({ cardKey, value, label }: Input) => {
     return "bg-gray-400";
   }
 
-
+  function higherOrLower(value: value, answer: string | number) {
+    return typeof value === "number" &&
+      typeof answer === "number" &&
+      value > answer
+      ? "Lower"
+      : "Higher";
+  }
 
   return (
-    <div key={cardKey} className={`border border-white h-[40%] w-25 text-center ${getColorByCard(cardKey, value, todaysAnswer[cardKey])} text-black rounded-2xl`}>
-      <div className="h-[50%] font-bold">{label}</div>
-      <div
-        className="`h-[50%}"
-      >
-        {value}
+    <div
+      key={cardKey}
+      className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(cardKey, value, lookUpKey)} text-black rounded-2xl`}
+    >
+      <div className="h-[50%] ">{label}</div>
+      <div className="flex flex-row justify-center gap-0.5 font-bold">
+        <div className="h-[50%}">{value}</div>
+        {checkforKeyName(cardKey) && value !== lookUpKey && (
+          <div className="font-normal">
+            {higherOrLower(value, lookUpKey) === "Lower" ? "v" : "^"}
+          </div>
+        )}
       </div>
     </div>
   );
