@@ -21,6 +21,7 @@ type VariableOrange = keyof typeof variableOrange;
 type validInCard = Extract<VariableOrange, keyof Card>;
 
 const GameInfoCard = ({ cardKey, value, label }: Input) => {
+  
   function checkforKeyName(key: keyof Card): key is validInCard {
     if (cardKey in variableOrange) {
       return true;
@@ -31,8 +32,8 @@ const GameInfoCard = ({ cardKey, value, label }: Input) => {
   function getColorByCard(
     cardKey: CardKey,
     value: value,
-    answer: string | number,
-  ) {
+    answer: string | number,) {
+
     if (value === todaysAnswer[cardKey]) return "bg-green-800";
 
     if (checkforKeyName(cardKey)) {
@@ -55,7 +56,7 @@ const GameInfoCard = ({ cardKey, value, label }: Input) => {
     <div key={cardKey} className={`border border-white h-[40%] w-25 text-center ${getColorByCard(cardKey, value, todaysAnswer[cardKey])} text-black rounded-2xl`}>
       <div className="h-[50%] font-bold">{label}</div>
       <div
-        className="`h-[50%} "
+        className="`h-[50%}"
       >
         {value}
       </div>
