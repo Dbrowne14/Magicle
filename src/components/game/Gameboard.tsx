@@ -2,6 +2,7 @@ import GameInput from "./GameInput";
 import GameOutput from "./GameOutput";
 import { useState, useEffect } from "react";
 import EndState from "./EndState";
+import type { ReturnStructure } from "../../types/types";
 
 const roundLimit = 10;
 
@@ -15,6 +16,7 @@ const Gameboard = () => {
   const [endGame, setEndgame] = useState(false);
   const [round, setRound] = useState<number>(0);
   const [result, setResult] = useState("");
+  const [allcards, setAllCards] = useState<ReturnStructure[] | null>(null);
 
   useEffect(() => {
     if (round >= roundLimit) {
@@ -33,7 +35,6 @@ const Gameboard = () => {
   }, [guessState, round]);
 
   useEffect(() => {
-    console.log("load effect");
     const fetchWord = async () => {
       const response = await fetch("http://localhost:3000/todays_word");
       if (!response.ok) {
@@ -41,12 +42,26 @@ const Gameboard = () => {
       }
       const data = await response.json();
       todaysWord = data;
-      console.log("todays word", data);
-      console.log(todaysWord)
-      console.log(todaysWord.name);
     };
 
     fetchWord();
+  }, []);
+
+  useEffect(() => {
+    const fetchAllcards = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/allCards");
+        if (!response.ok) {
+          console.log("Error returning fetch");
+        }
+        const data = await response.json();
+        console.log(data);
+        setAllCards(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllcards();
   }, []);
 
   return (
@@ -62,7 +77,7 @@ const Gameboard = () => {
         />
         <GameOutput guessState={guessState} />
       </div>
-      {endGame && <EndState result={result} todaysWord = {todaysWord} />}
+      {endGame && <EndState result={result} todaysWord={todaysWord} />}
     </div>
   );
 };
