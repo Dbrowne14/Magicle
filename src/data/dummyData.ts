@@ -156,6 +156,19 @@ export const cardsData: CardData = {
   Year: 2021,
   Colours: 1,
   Price: 5.5,
+},
+
+"Shiny Impetus": {
+  name: "Shiny Impetus",
+  img: dummyImg,
+  CMC: 4,
+  Print: "LOTR",
+  Rarity: "U",
+  CardType: "sorcery",
+  Pip: "Green",
+  Year: 2021,
+  Colours: 1,
+  Price: 5.5,
 }
 };
 
