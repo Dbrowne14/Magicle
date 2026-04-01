@@ -6,9 +6,22 @@ import type { ReturnStructure } from "../../types/types";
 
 const roundLimit = 10;
 
-let todaysWord: { name: string; img: string } = {
+let todaysWord: ReturnStructure = {
+  id: 0,
+  scryfall_id: "",
   name: "",
+  cmc: 0,
+  type: [""],
+  islegendary: false,
   img: "",
+  year: 0,
+  rarity: "",
+  set_code: "",
+  set_name: "",
+  price: "",
+  pips: [""],
+  colors: 0,
+  edhrec_rank: 0
 };
 
 const Gameboard = () => {
@@ -76,7 +89,7 @@ const Gameboard = () => {
           endGame={endGame}
           allCards = {allCards}
         />
-        <GameOutput guessState={guessState} />
+        <GameOutput guessState={guessState} allCards = {allCards} todaysWord = {todaysWord}/>
       </div>
       {endGame && <EndState result={result} todaysWord={todaysWord} />}
     </div>

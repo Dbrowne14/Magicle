@@ -1,7 +1,8 @@
-import { todaysAnswer } from "../../data/dummyData";
-import type { Card } from "../../data/dummyData";
 
-type CardKey = keyof Card;
+import type { Card } from "../../data/dummyData";
+import type { ReturnStructure } from "../../types/types";
+
+type CardKey = keyof ReturnStructure;
 type value = string | number;
 
 export type Input = {
@@ -18,7 +19,7 @@ const variableOrange = {
 
 type VariableOrange = keyof typeof variableOrange;
 
-type validInCard = Extract<VariableOrange, keyof Card>;
+type validInCard = Extract<VariableOrange, keyof ReturnStructure>;
 
 const GameInfoCard = ({ cardKey, value, label }: Input) => {
   const lookUpKey = todaysAnswer[cardKey];

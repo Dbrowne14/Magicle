@@ -1,17 +1,22 @@
 export interface ReturnStructure {
-   id: number;
-   scryfall_id: string;
-   name: string;
-   cmc: number;
-   type: string[];
-   islegendary: boolean;
-   img: string;
-   year: number;
-   rarity: string;
-   set_code: string;
-   set_name: string;
-   price: string;
-   pips: string[];
-   colors: number;
-   edhrec_rank: number;
+  id: number;
+  scryfall_id: string;
+  name: string;
+  cmc: number;
+  type: string[];
+  islegendary: boolean;
+  img: string;
+  year: number;
+  rarity: string;
+  set_code: string;
+  set_name: string;
+  price: string;
+  pips: string[];
+  colors: number;
+  edhrec_rank: number;
+}
+
+export interface TodaysWord {
+  name: string;
+  img: string;
 }
