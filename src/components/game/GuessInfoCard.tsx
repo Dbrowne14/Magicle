@@ -50,7 +50,7 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
     return "bg-gray-400";
   }
 
-  function higherOrLower(value: value, answer: string | number) {
+  function higherOrLower(value: value, answer: value) {
     return typeof value === "number" &&
       typeof answer === "number" &&
       value > answer

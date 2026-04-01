@@ -36,13 +36,15 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
             <GuessName key={guess} cardKey={guess} guess={guessData[0]} answer={todaysWord} />
 
             <div className="flex-1 flex flex-wrap justify-center items-center">
-              {typedEntries(guessData ?? {})
+              {typedEntries(guessData[0] ?? {})
                 .filter(
                   ([key]) =>
-                    key !== "img" &&
-                    key !== "name" &&
-                    key !== "rarity" &&
-                    key !== "type",
+                    key === "cmc" ||
+                    key === "year" ||
+                    key === "set_code" ||
+                    key === "price" ||
+                    key === "pips" ||
+                    key === "colors"
                 )
                 .map(([key, value]) => {
                   return (
