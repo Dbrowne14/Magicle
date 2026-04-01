@@ -22,7 +22,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
       {guessState.map((guess, key) => {
         if (!allCards) return;
 
-        const guessData: ReturnStructure | undefined = allCards.filter(
+        const guessData: ReturnStructure[] | undefined = allCards.filter(
           (card) => card.name === guess,
         );
 
@@ -33,7 +33,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
             className="flex flex-1 flex-col h-full border border-white"
             key={key}
           >
-            <GuessName key={guess} cardKey={guess} guess={guessData} answer={todaysWord} />
+            <GuessName key={guess} cardKey={guess} guess={guessData[0]} answer={todaysWord} />
 
             <div className="flex-1 flex flex-wrap justify-center items-center">
               {typedEntries(guessData ?? {})
@@ -51,7 +51,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                       cardKey={key}
                       label={key}
                       value={value}
-                      guess={guessData.name}
+                      answer={todaysWord}
                     />
                   );
                 })}

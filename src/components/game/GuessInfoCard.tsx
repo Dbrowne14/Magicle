@@ -1,14 +1,13 @@
 
-import type { Card } from "../../data/dummyData";
 import type { ReturnStructure } from "../../types/types";
-
 type CardKey = keyof ReturnStructure;
-type value = string | number;
+type value = string | number | boolean | string[];
 
 export type Input = {
   cardKey: CardKey;
   value: value;
   label: string;
+  answer: ReturnStructure;
 };
 
 const variableOrange = {
@@ -21,9 +20,9 @@ type VariableOrange = keyof typeof variableOrange;
 
 type validInCard = Extract<VariableOrange, keyof ReturnStructure>;
 
-const GameInfoCard = ({ cardKey, value, label }: Input) => {
-  const lookUpKey = todaysAnswer[cardKey];
-  function checkforKeyName(key: keyof Card): key is validInCard {
+const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
+  const lookUpKey = answer[cardKey];
+  function checkforKeyName(key: keyof ReturnStructure): key is validInCard {
     if (cardKey in variableOrange) {
       return true;
     }
@@ -33,7 +32,7 @@ const GameInfoCard = ({ cardKey, value, label }: Input) => {
   function getColorByCard(
     cardKey: CardKey,
     value: value,
-    answer: string | number,
+    answer: value,
   ) {
     if (value === lookUpKey) return "bg-green-800";
 
