@@ -18,7 +18,7 @@ let todaysWord: ReturnStructure = {
   rarity: "",
   set_code: "",
   set_name: "",
-  price: "",
+  price: 0,
   pips: [""],
   colors: 0,
   edhrec_rank: 0

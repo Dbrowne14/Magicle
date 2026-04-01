@@ -10,7 +10,7 @@ export interface ReturnStructure {
   rarity: string;
   set_code: string;
   set_name: string;
-  price: string;
+  price: number;
   pips: string[];
   colors: number;
   edhrec_rank: number;

@@ -46,7 +46,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                     key === "set_code" ||
                     key === "price" ||
                     key === "pips" ||
-                    key === "colors"
+                    key === "edhrec_rank"
                 )
                 .map(([key, value]) => {
                   return (

@@ -11,9 +11,10 @@ export type Input = {
 };
 
 const variableOrange = {
-  CMC: 2,
-  Year: 3,
-  Price: 5,
+  cmc: 2,
+  year: 3,
+  price: 5,
+  edhrec_rank: 50
 } as const;
 
 type VariableOrange = keyof typeof variableOrange;

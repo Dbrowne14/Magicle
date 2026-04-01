@@ -8,7 +8,7 @@ type CardName = {
 
 const GuessName = ({ cardKey, guess, answer }: CardName) => {
   const { rarity, type, name } = guess;
-
+  const hasMatch = type.some((t) => answer.type.includes(t));
   console.log("answer", answer);
   console.log("guess", guess);
   return (
@@ -25,7 +25,11 @@ const GuessName = ({ cardKey, guess, answer }: CardName) => {
           >
             {rarity}
           </h2>
-
+          <h2
+            className={`${hasMatch ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
+          >
+            {type}
+          </h2>
         </div>
       </div>
     </div>
@@ -35,9 +39,4 @@ const GuessName = ({ cardKey, guess, answer }: CardName) => {
 export default GuessName;
 
 /*
-          <h2
-            className={`${hasMatch ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
-          >
-            {type}
-          </h2>
-            const hasMatch = type.some((t) => answer.type.includes(t));*/
+ */
