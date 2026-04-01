@@ -16,7 +16,7 @@ const Gameboard = () => {
   const [endGame, setEndgame] = useState(false);
   const [round, setRound] = useState<number>(0);
   const [result, setResult] = useState("");
-  const [allcards, setAllCards] = useState<ReturnStructure[] | null>(null);
+  const [allCards, setAllCards] = useState<ReturnStructure[] | null>(null);
 
   useEffect(() => {
     if (round >= roundLimit) {
@@ -74,6 +74,7 @@ const Gameboard = () => {
           round={round}
           setRound={setRound}
           endGame={endGame}
+          allCards = {allCards}
         />
         <GameOutput guessState={guessState} />
       </div>

@@ -1,18 +1,25 @@
-import { cardsData } from "../../data/dummyData";
 import { useState, useEffect } from "react";
+import type { ReturnStructure } from "../../types/types";
 
 type GuessProps = {
   guessState: string[];
   setGuessState: React.Dispatch<React.SetStateAction<string[]>>;
   round: number;
-  setRound: React.Dispatch<React.SetStateAction<number>>
-  endGame : boolean;
+  setRound: React.Dispatch<React.SetStateAction<number>>;
+  endGame: boolean;
+  allCards: ReturnStructure[] | null;
 };
 
-const GameInput = ({ guessState, setGuessState, round, setRound, endGame }: GuessProps) => {
+const GameInput = ({
+  guessState,
+  setGuessState,
+  round,
+  setRound,
+  endGame,
+  allCards,
+}: GuessProps) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [roundGuess, setRoundGuess] = useState<string>("");
-  const data = Object.keys(cardsData);
 
   useEffect(() => {
     if (!roundGuess) {
@@ -20,28 +27,31 @@ const GameInput = ({ guessState, setGuessState, round, setRound, endGame }: Gues
       return;
     }
 
-   const dataNewSuggestions = data.filter(item => !guessState.includes(item))
-   console.log('filtereddata',dataNewSuggestions)
+    if (!allCards) return;
+    const data = allCards.map((card) => card.name);
+
+    const dataNewSuggestions = data.filter(
+      (item) => !guessState.includes(item),
+    );
+    console.log("filtereddata", dataNewSuggestions);
 
     const filtered = dataNewSuggestions.filter((item) => {
       return item.toLowerCase().includes(roundGuess.toLowerCase());
     });
 
     setSuggestions(filtered.slice(0, 10));
-  }, [roundGuess, data]);
+  }, [roundGuess]);
 
   const handleGuess = (guess: string) => {
-    setGuessState((prev)=> [guess, ...prev]);
+    setGuessState((prev) => [guess, ...prev]);
     setRound((prev) => prev + 1);
-      console.log('GuessState Input:',guessState)
+    console.log("GuessState Input:", guessState);
     setRoundGuess("");
-  }
+  };
 
   return (
     <div className="h-12 border border-white text-white inline-flex ">
-      <div
-        className="inline-flex relative w-[60%]"
-      >
+      <div className="inline-flex relative w-[60%]">
         <input
           type="text"
           name="SearchBar"
@@ -58,7 +68,11 @@ const GameInput = ({ guessState, setGuessState, round, setRound, endGame }: Gues
         {suggestions.length > 0 && (
           <ul className="absolute m-0 p-0 bg-white text-black max-h-20 overflow-y-auto w-full">
             {suggestions.map((item, id) => (
-              <li key={id} className="p-2 text-[1rem]" onClick={() => handleGuess(item)}>
+              <li
+                key={id}
+                className="p-2 text-[1rem]"
+                onClick={() => handleGuess(item)}
+              >
                 {item}
               </li>
             ))}
