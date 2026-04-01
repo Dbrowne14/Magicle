@@ -55,6 +55,7 @@ const Gameboard = () => {
       }
       const data = await response.json();
       todaysWord = data;
+      console.log(todaysWord)
     };
 
     fetchWord();
