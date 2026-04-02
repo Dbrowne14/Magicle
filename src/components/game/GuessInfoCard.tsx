@@ -13,14 +13,14 @@ export type Input = {
 
 export type Label = "cmc" | "year" | "set_code" | "price" | "pips" | "edhrec_rank";
 
-const renameLabel = (label: Label) => {
+const renameLabel = (label: string) => {
   const labelCap = label.charAt(0).toUpperCase() + label.slice(1, label.length);
   if(label === "set_code" ) return "Set";
   else if(label === "edhrec_rank") return "Rank"
   else return labelCap;
 }
 
-const handleValue = (label: Label, value: string) => {
+const handleValue = (label: string, value: value) => {
   if (label === "price") {
     return "$" + value;
   }
