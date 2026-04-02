@@ -1,38 +1,21 @@
-
 import type { ReturnStructure } from "../../types/types";
-type CardKey = keyof ReturnStructure;
-type value = string | number | boolean | string[];
-
-export type Input = {
-  cardKey: CardKey;
-  value: value;
-  label: string;
-  answer: ReturnStructure;
-};
-
-
-export type Label = "cmc" | "year" | "set_code" | "price" | "pips" | "edhrec_rank";
+import { CardValue } from "./cardValue";
+import type { Value, Input, CardKey } from "../../types/types";
 
 const renameLabel = (label: string) => {
   const labelCap = label.charAt(0).toUpperCase() + label.slice(1, label.length);
-  if(label === "set_code" ) return "Set";
-  else if(label === "edhrec_rank") return "Rank"
+  if (label === "set_code") return "Set";
+  else if (label === "edhrec_rank") return "Rank";
   else return labelCap;
-}
+};
 
-const handleValue = (label: string, value: value) => {
-  if (label === "price") {
-    return "$" + value;
-  }
 
-  return value
-}
 
 const variableOrange = {
   cmc: 2,
   year: 3,
   price: 5,
-  edhrec_rank: 50
+  edhrec_rank: 50,
 } as const;
 
 type VariableOrange = keyof typeof variableOrange;
@@ -48,11 +31,7 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
     return false;
   }
 
-  function getColorByCard(
-    cardKey: CardKey,
-    value: value,
-    answer: value,
-  ) {
+  function getColorByCard(cardKey: CardKey, value: Value, answer: Value) {
     if (value === lookUpKey) return "bg-green-800";
 
     if (checkforKeyName(cardKey)) {
@@ -69,7 +48,7 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
     return "bg-gray-400";
   }
 
-  function higherOrLower(value: value, answer: value) {
+  function higherOrLower(value: Value, answer: Value) {
     return typeof value === "number" &&
       typeof answer === "number" &&
       value > answer
@@ -83,8 +62,8 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
       className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(cardKey, value, lookUpKey)} text-black rounded-2xl`}
     >
       <div className="h-[50%] ">{renameLabel(label)}</div>
-      <div className="flex flex-row justify-center gap-0.5 font-bold">
-        <div className="h-[50%}">{handleValue(label, value)}</div>
+      <div className="flex flex-row justify-center gap-0.5 font-bold h-[50%]">
+        <CardValue label={label} value={value}/>
         {checkforKeyName(cardKey) && value !== lookUpKey && (
           <div className="font-normal">
             {higherOrLower(value, lookUpKey) === "Lower" ? "v" : "^"}

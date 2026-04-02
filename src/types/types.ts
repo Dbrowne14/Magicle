@@ -20,3 +20,13 @@ export interface TodaysWord {
   name: string;
   img: string;
 }
+
+export type Value = string | number | boolean | string[];
+export type CardKey = keyof ReturnStructure;
+
+export type Input = {
+  cardKey: CardKey;
+  value: Value;
+  label: string;
+  answer: ReturnStructure;
+};
