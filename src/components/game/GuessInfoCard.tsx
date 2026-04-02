@@ -10,6 +10,24 @@ export type Input = {
   answer: ReturnStructure;
 };
 
+
+export type Label = "cmc" | "year" | "set_code" | "price" | "pips" | "edhrec_rank";
+
+const renameLabel = (label: Label) => {
+  const labelCap = label.charAt(0).toUpperCase() + label.slice(1, label.length);
+  if(label === "set_code" ) return "Set";
+  else if(label === "edhrec_rank") return "Rank"
+  else return labelCap;
+}
+
+const handleValue = (label: Label, value: string) => {
+  if (label === "price") {
+    return "$" + value;
+  }
+
+  return value
+}
+
 const variableOrange = {
   cmc: 2,
   year: 3,
@@ -64,9 +82,9 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
       key={cardKey}
       className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(cardKey, value, lookUpKey)} text-black rounded-2xl`}
     >
-      <div className="h-[50%] ">{label}</div>
+      <div className="h-[50%] ">{renameLabel(label)}</div>
       <div className="flex flex-row justify-center gap-0.5 font-bold">
-        <div className="h-[50%}">{value}</div>
+        <div className="h-[50%}">{handleValue(label, value)}</div>
         {checkforKeyName(cardKey) && value !== lookUpKey && (
           <div className="font-normal">
             {higherOrLower(value, lookUpKey) === "Lower" ? "v" : "^"}
