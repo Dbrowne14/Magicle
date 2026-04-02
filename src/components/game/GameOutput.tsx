@@ -68,3 +68,5 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
 };
 
 export default GameOutput;
+/*Hello I am a developer who is very interested in your volunteer posting. I have had experience building websites (at some level) since I was in my early teens, but as many do after university worked in finance for 8 or so years to earn a comfortable income in London, before in truth becoming disillusioned with the industry last year and focusing full time in software engineering.  I also have an eye for design and design principles both generally and in life - this is something I take a keen interest in, but also as I continue in my journey expanding my software capabilities.  I am also passionate about volunteering, I worked for the RSPCA for over a year while recovering from a serious operation and volunteer on a need case basis at UCLH, speaking to aftercare patients who went through similar traumatic ENT operations.
+*/
