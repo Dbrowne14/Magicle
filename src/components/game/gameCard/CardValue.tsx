@@ -1,5 +1,5 @@
-import type { Value } from "../../types/types";
-import { wubrg } from "../../data/pipDataStructure";
+import type { Value } from "../../../types/types";
+import { wubrg } from "../../../data/pipDataStructure";
 
 interface CardValueProps {
   label: string;

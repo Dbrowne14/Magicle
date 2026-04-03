@@ -1,4 +1,4 @@
-import type { ReturnStructure } from "../../types/types";
+import type { ReturnStructure } from "../../../types/types";
 
 type CardName = {
   cardKey: string;

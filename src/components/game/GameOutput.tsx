@@ -1,5 +1,5 @@
-import GuessInfoCard from "./GuessInfoCard";
-import GuessName from "./GuessName";
+import GuessInfoCard from "./gameCard/GuessInfoCard";
+import GuessName from "./gameCard/BaseInfoCard";
 import type { ReturnStructure } from "../../types/types";
 
 type Output = {
@@ -28,14 +28,19 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
 
         if (!guessData) return null;
 
-        console.log(guessData)
+        console.log(guessData);
 
         return (
           <div
             className="flex flex-1 flex-col h-full border border-white"
             key={key}
           >
-            <GuessName key={guess} cardKey={guess} guess={guessData[0]} answer={todaysWord} />
+            <GuessName
+              key={guess}
+              cardKey={guess}
+              guess={guessData[0]}
+              answer={todaysWord}
+            />
 
             <div className="flex-1 flex flex-wrap justify-center items-center">
               {typedEntries(guessData[0] ?? {})
@@ -46,7 +51,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                     key === "set_code" ||
                     key === "price" ||
                     key === "pips" ||
-                    key === "edhrec_rank"
+                    key === "edhrec_rank",
                 )
                 .map(([key, value]) => {
                   return (
@@ -69,4 +74,4 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
 
 export default GameOutput;
 /*Hello I am a developer who is very interested in your volunteer posting. I have had experience building websites (at some level) since I was in my early teens, but as many do after university worked in finance for 8 or so years to earn a comfortable income in London, before in truth becoming disillusioned with the industry last year and focusing full time in software engineering.  I also have an eye for design and design principles both generally and in life - this is something I take a keen interest in, but also as I continue in my journey expanding my software capabilities.  I am also passionate about volunteering, I worked for the RSPCA for over a year while recovering from a serious operation and volunteer on a need case basis at UCLH, speaking to aftercare patients who went through similar traumatic ENT operations.
-*/
+ */

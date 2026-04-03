@@ -1,6 +1,6 @@
-import type { ReturnStructure } from "../../types/types";
-import { CardValue } from "./cardValue";
-import type { Value, Input } from "../../types/types";
+import type { ReturnStructure } from "../../../types/types";
+import { CardValue } from "./CardValue";
+import type { Value, Input } from "../../../types/types";
 
 const renameLabel = (label: string) => {
   const labelCap = label.charAt(0).toUpperCase() + label.slice(1, label.length);
@@ -9,14 +9,13 @@ const renameLabel = (label: string) => {
   else return labelCap;
 };
 
+const isSame = (a: string[], b: string[]) => {
+  return a.length === b.length && a.every((valx, valy) => valx === b[valy]);
+};
 
-const isSame = (a:string[], b:string[]) => {
-  return a.length === b.length && a.every((valx, valy) => valx === b[valy])
-}
-
-const isSimilar = (a:string[], b:string[]) => {
-  return a.some(pip => b.includes(pip))
-}
+const isSimilar = (a: string[], b: string[]) => {
+  return a.some((pip) => b.includes(pip));
+};
 
 const variableOrange = {
   cmc: 2,
@@ -40,15 +39,22 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
   }
 
   function getColorByCard(cardKey: string, value: Value, answer: Value) {
-    if(cardKey === "pips") {
-      if(isSame(value, lookUpKey)) {
-        return "bg-green-800"
+    if (cardKey === "pips") {
+      if (
+        Array.isArray(value) &&
+        Array.isArray(lookUpKey) &&
+        isSame(value, lookUpKey)
+      ) {
+        return "bg-green-800";
       }
-
-      if (isSimilar(value, lookUpKey)) {
-        return "bg-yellow-300"
-      } 
-      return "bg-gray-400"
+      if (
+        Array.isArray(value) &&
+        Array.isArray(lookUpKey) &&
+        isSimilar(value, lookUpKey)
+      ) {
+        return "bg-yellow-300";
+      }
+      return "bg-gray-400";
     }
     if (value === lookUpKey) return "bg-green-800";
 
@@ -81,7 +87,7 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
     >
       <div className="h-[50%] ">{renameLabel(label)}</div>
       <div className="flex flex-row justify-center gap-0.5 font-bold h-[50%]">
-        <CardValue label={label} value={value}/>
+        <CardValue label={label} value={value} />
         {checkforKeyName(label) && value !== lookUpKey && (
           <div className="font-normal">
             {higherOrLower(value, lookUpKey) === "Lower" ? "v" : "^"}
