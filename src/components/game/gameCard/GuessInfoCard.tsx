@@ -1,9 +1,10 @@
 import type { ReturnStructure } from "../../../types/types";
 import { CardValue } from "./CardValue";
 import type { Value, Input } from "../../../types/types";
+import { capitalizeFirst } from "../../../utilities/utilityFns";
 
 const renameLabel = (label: string) => {
-  const labelCap = label.charAt(0).toUpperCase() + label.slice(1, label.length);
+  const labelCap = capitalizeFirst(label);
   if (label === "set_code") return "Set";
   else if (label === "edhrec_rank") return "Rank";
   else return labelCap;

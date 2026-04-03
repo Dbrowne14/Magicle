@@ -1,10 +1,16 @@
 import type { ReturnStructure } from "../../../types/types";
+import { capitalizeFirst } from "../../../utilities/utilityFns";
 
 type CardName = {
   cardKey: string;
   guess: ReturnStructure;
   answer: ReturnStructure;
 };
+
+const handleType = (type: string[]) => {
+  const capitalisedTypes = type.map((type)=> capitalizeFirst(type))
+  return capitalisedTypes.join(" ")
+}
 
 const GuessName = ({ cardKey, guess, answer }: CardName) => {
   const { rarity, type, name } = guess;
@@ -23,12 +29,12 @@ const GuessName = ({ cardKey, guess, answer }: CardName) => {
           <h2
             className={`${rarity === answer.rarity ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
           >
-            {rarity}
+            {capitalizeFirst(rarity)}
           </h2>
           <h2
             className={`${hasMatch ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
           >
-            {type}
+            {handleType(type)}
           </h2>
         </div>
       </div>

@@ -1,0 +1,1 @@
+export const capitalizeFirst = (label:string) => label.charAt(0).toUpperCase() + label.slice(1, label.length)
