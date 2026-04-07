@@ -1,7 +1,7 @@
 import type { ReturnStructure } from "../../../types/types";
 import { CardValue } from "./CardValue";
 import type { Value, Input } from "../../../types/types";
-import { capitalizeFirst } from "../../../utilities/utilityFns";
+import { capitalizeFirst, isSame, isSimilar } from "../../../utilities/utilityFns";
 
 const renameLabel = (label: string) => {
   const labelCap = capitalizeFirst(label);
@@ -10,13 +10,7 @@ const renameLabel = (label: string) => {
   else return labelCap;
 };
 
-const isSame = (a: string[], b: string[]) => {
-  return a.length === b.length && a.every((valx, valy) => valx === b[valy]);
-};
 
-const isSimilar = (a: string[], b: string[]) => {
-  return a.some((pip) => b.includes(pip));
-};
 
 const variableOrange = {
   cmc: 2,
