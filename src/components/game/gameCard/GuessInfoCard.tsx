@@ -1,7 +1,11 @@
 import type { ReturnStructure } from "../../../types/types";
 import { CardValue } from "./CardValue";
 import type { Value, Input } from "../../../types/types";
-import { capitalizeFirst, isSame, isSimilar } from "../../../utilities/utilityFns";
+import {
+  capitalizeFirst,
+  isSame,
+  isSimilar,
+} from "../../../utilities/utilityFns";
 
 const renameLabel = (label: string) => {
   const labelCap = capitalizeFirst(label);
@@ -9,8 +13,6 @@ const renameLabel = (label: string) => {
   else if (label === "edhrec_rank") return "Rank";
   else return labelCap;
 };
-
-
 
 const variableOrange = {
   cmc: 2,
