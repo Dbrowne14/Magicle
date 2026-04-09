@@ -7,3 +7,10 @@ export const isSame = (a: string[], b: string[]) => {
 export const isSimilar = (a: string[], b: string[]) => {
   return a.some((pip) => b.includes(pip));
 };
+
+export  const renameLabel = (label: string) => {
+  const labelCap = capitalizeFirst(label);
+  if (label === "set_code") return "Set";
+  else if (label === "edhrec_rank") return "Rank";
+  else return labelCap;
+};

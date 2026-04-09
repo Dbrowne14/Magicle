@@ -1,18 +1,8 @@
 import type { ReturnStructure } from "../../../types/types";
 import { CardValue } from "./CardValue";
 import type { Value, Input } from "../../../types/types";
-import {
-  capitalizeFirst,
-  isSame,
-  isSimilar,
-} from "../../../utilities/utilityFns";
-
-const renameLabel = (label: string) => {
-  const labelCap = capitalizeFirst(label);
-  if (label === "set_code") return "Set";
-  else if (label === "edhrec_rank") return "Rank";
-  else return labelCap;
-};
+import { renameLabel, isSame, isSimilar } from "../../../utilities/utilityFns";
+import { useState, useEffect } from "react";
 
 const variableOrange = {
   cmc: 2,
@@ -22,12 +12,13 @@ const variableOrange = {
 } as const;
 
 type VariableOrange = keyof typeof variableOrange;
-
 type validInCard = Extract<VariableOrange, keyof ReturnStructure>;
 
 const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
   const lookUpKey = answer[cardKey];
+  const [isActive, setIsActive] = useState(false);
 
+  /*----handling color changes ----*/
   function checkforKeyName(key: string): key is validInCard {
     if (cardKey in variableOrange) {
       return true;
@@ -53,7 +44,10 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
       }
       return "bg-highlightGrey";
     }
-    if (value === lookUpKey) return "bg-highlightGreen";
+
+    if (value === lookUpKey) {
+      return "bg-highlightGreen";
+    }
 
     if (checkforKeyName(cardKey)) {
       const boundary = variableOrange[cardKey];
@@ -65,10 +59,22 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
         return "bg-highlightYellow";
       }
     }
-
     return "bg-highlightGrey";
   }
 
+  useEffect(() => {
+    const active =
+      getColorByCard(cardKey, value, lookUpKey) !== "bg-highlightGrey";
+
+    if (active) {
+      setIsActive(false);
+      setTimeout(() => setIsActive(true), 1000);
+    } else {
+      setIsActive(false);
+    }
+  }, [cardKey, value, lookUpKey]);
+
+  /*----handling arrow changes ----*/
   function higherOrLower(value: Value, answer: Value) {
     return typeof value === "number" &&
       typeof answer === "number" &&
@@ -80,7 +86,7 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
   return (
     <div
       key={cardKey}
-      className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(label, value, lookUpKey)} text-black rounded-2xl`}
+      className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(label, value, lookUpKey)} ${isActive ? "flip-once" : ""} text-black rounded-2xl backface-hidden`}
     >
       <div className="h-[50%] ">{renameLabel(label)}</div>
       <div className="flex flex-row justify-center gap-0.5 font-bold h-[50%]">
