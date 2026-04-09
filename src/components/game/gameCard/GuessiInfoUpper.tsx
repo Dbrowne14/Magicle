@@ -14,7 +14,7 @@ const handleType = (type: string[]) => {
   return capitalisedTypes.join(" ");
 };
 
-export const BaseInfoCard = ({ cardKey, guess, answer, isLatest }: CardName) => {
+export const GuessInfoUpper = ({ cardKey, guess, answer, isLatest }: CardName) => {
   const [flipBuckets, setFlipBuckets] = useState<string[]>([])
   const { rarity, type, name, islegendary } = guess;
 

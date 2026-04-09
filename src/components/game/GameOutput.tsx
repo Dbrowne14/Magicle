@@ -1,5 +1,5 @@
-import GuessInfoCard from "./gameCard/GuessInfoLower";
-import { BaseInfoCard } from "./gameCard/GuessiInfoUpper";
+import {GuessInfoLower} from "./gameCard/GuessInfoLower";
+import { GuessInfoUpper } from "./gameCard/GuessiInfoUpper";
 import type { ReturnStructure } from "../../types/types";
 
 type Output = {
@@ -35,7 +35,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
             className="flex flex-1 flex-col h-full border border-white"
             key={key}
           >
-            <BaseInfoCard
+            <GuessInfoUpper
               key={guess}
               cardKey={guess}
               guess={guessData[0]}
@@ -56,7 +56,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                 )
                 .map(([cardKey, value], guessIndex) => {
                   return (
-                    <GuessInfoCard
+                    <GuessInfoLower
                       key={`${cardKey} - ${guessIndex}`}
                       cardKey={cardKey}
                       label={cardKey}

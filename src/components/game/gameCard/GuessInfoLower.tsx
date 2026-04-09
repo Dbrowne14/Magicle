@@ -14,7 +14,7 @@ const variableOrange = {
 type VariableOrange = keyof typeof variableOrange;
 type validInCard = Extract<VariableOrange, keyof ReturnStructure>;
 
-const GameInfoCard = ({ cardKey, value, label, answer, isLatest }: Input) => {
+export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Input) => {
   const lookUpKey = answer[cardKey];
   const [isActive, setIsActive] = useState(false);
 
@@ -101,4 +101,3 @@ const GameInfoCard = ({ cardKey, value, label, answer, isLatest }: Input) => {
   );
 };
 
-export default GameInfoCard;
