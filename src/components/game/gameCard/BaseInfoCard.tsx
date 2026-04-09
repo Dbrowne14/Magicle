@@ -14,7 +14,15 @@ const handleType = (type: string[]) => {
 
 const GuessName = ({ cardKey, guess, answer }: CardName) => {
   const { rarity, type, name, islegendary } = guess;
+  const isSame = (a: string[], b: string[]) => {
+    return a.length === b.length && a.every((val, i) => val === b[i]);
+  };
   const hasMatch = type.some((t) => answer.type.includes(t));
+  const typeShading = () => {
+    if (isSame(type, answer.type)) return "bg-green-800";
+    if (hasMatch) return "bg-yellow-300";
+    return "bg-gray-400";
+  };
   console.log("answer", answer);
   console.log("guess", guess);
   return (
@@ -34,11 +42,9 @@ const GuessName = ({ cardKey, guess, answer }: CardName) => {
           <h2
             className={`${islegendary === answer.islegendary ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
           >
-            {islegendary ? "Legendary": "Non-legendary"}
+            {islegendary ? "Legendary" : "Non-legendary"}
           </h2>
-          <h2
-            className={`${hasMatch ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
-          >
+          <h2 className={`${typeShading()} px-2 rounded-2xl`}>
             {handleType(type)}
           </h2>
         </div>
