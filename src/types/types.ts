@@ -29,4 +29,5 @@ export type Input = {
   value: Value;
   label: string;
   answer: ReturnStructure;
+  isLatest: boolean;
 };

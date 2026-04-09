@@ -14,7 +14,7 @@ const variableOrange = {
 type VariableOrange = keyof typeof variableOrange;
 type validInCard = Extract<VariableOrange, keyof ReturnStructure>;
 
-const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
+const GameInfoCard = ({ cardKey, value, label, answer, isLatest }: Input) => {
   const lookUpKey = answer[cardKey];
   const [isActive, setIsActive] = useState(false);
 
@@ -64,7 +64,7 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
 
   useEffect(() => {
     const active =
-      getColorByCard(cardKey, value, lookUpKey) !== "bg-highlightGrey";
+      getColorByCard(cardKey, value, lookUpKey) !== "bg-highlightGrey" && isLatest;
 
     if (active) {
       setIsActive(false);
@@ -72,7 +72,7 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
     } else {
       setIsActive(false);
     }
-  }, [cardKey, value, lookUpKey]);
+  }, [cardKey, value, lookUpKey, isLatest]);
 
   /*----handling arrow changes ----*/
   function higherOrLower(value: Value, answer: Value) {

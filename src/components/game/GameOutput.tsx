@@ -53,14 +53,15 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                     key === "pips" ||
                     key === "edhrec_rank",
                 )
-                .map(([key, value], guessIndex) => {
+                .map(([cardKey, value], guessIndex) => {
                   return (
                     <GuessInfoCard
-                      key={`${key} - ${guessIndex}`}
-                      cardKey={key}
-                      label={key}
+                      key={`${cardKey} - ${guessIndex}`}
+                      cardKey={cardKey}
+                      label={cardKey}
                       value={value}
                       answer={todaysWord}
+                      isLatest={key === 0}
                     />
                   );
                 })}
