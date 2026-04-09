@@ -42,18 +42,18 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
         Array.isArray(lookUpKey) &&
         isSame(value, lookUpKey)
       ) {
-        return "bg-green-800";
+        return "bg-highlightGreen";
       }
       if (
         Array.isArray(value) &&
         Array.isArray(lookUpKey) &&
         isSimilar(value, lookUpKey)
       ) {
-        return "bg-yellow-300";
+        return "bg-highlightYellow";
       }
-      return "bg-gray-400";
+      return "bg-highlightGrey";
     }
-    if (value === lookUpKey) return "bg-green-800";
+    if (value === lookUpKey) return "bg-highlightGreen";
 
     if (checkforKeyName(cardKey)) {
       const boundary = variableOrange[cardKey];
@@ -62,11 +62,11 @@ const GameInfoCard = ({ cardKey, value, label, answer }: Input) => {
         typeof answer === "number" &&
         Math.abs(value - answer) <= boundary
       ) {
-        return "bg-yellow-300";
+        return "bg-highlightYellow";
       }
     }
 
-    return "bg-gray-400";
+    return "bg-highlightGrey";
   }
 
   function higherOrLower(value: Value, answer: Value) {

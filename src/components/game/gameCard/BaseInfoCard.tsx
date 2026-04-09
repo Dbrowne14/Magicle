@@ -19,9 +19,9 @@ const GuessName = ({ cardKey, guess, answer }: CardName) => {
   };
   const hasMatch = type.some((t) => answer.type.includes(t));
   const typeShading = () => {
-    if (isSame(type, answer.type)) return "bg-green-800";
-    if (hasMatch) return "bg-yellow-300";
-    return "bg-gray-400";
+    if (isSame(type, answer.type)) return "bg-highlightGreen";
+    if (hasMatch) return "bg-highlightYellow";
+    return "bg-highlightGrey";
   };
   console.log("answer", answer);
   console.log("guess", guess);
@@ -35,12 +35,12 @@ const GuessName = ({ cardKey, guess, answer }: CardName) => {
         <h2 className="h-fit w-full">{name}</h2>
         <div className="inline-flex flex-wrap gap-2 text-black">
           <h2
-            className={`${rarity === answer.rarity ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
+            className={`${rarity === answer.rarity ? "bg-highlightGreen" : "bg-highlightGrey"} px-2 rounded-2xl`}
           >
             {capitalizeFirst(rarity)}
           </h2>
           <h2
-            className={`${islegendary === answer.islegendary ? "bg-green-800" : "bg-gray-400"} px-2 rounded-2xl`}
+            className={`${islegendary === answer.islegendary ? "bg-highlightGreen" : "bg-highlightGrey"} px-2 rounded-2xl`}
           >
             {islegendary ? "Legendary" : "Non-legendary"}
           </h2>
