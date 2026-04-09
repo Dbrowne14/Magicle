@@ -16,7 +16,7 @@ type validInCard = Extract<VariableOrange, keyof ReturnStructure>;
 
 export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Input) => {
   const lookUpKey = answer[cardKey];
-  const [isActive, setIsActive] = useState(false);
+  const [flip, setFlip] = useState(false);
 
   /*----handling color changes ----*/
   function checkforKeyName(key: string): key is validInCard {
@@ -62,17 +62,19 @@ export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Inpu
     return "bg-highlightGrey";
   }
 
-  useEffect(() => {
-    const active =
-      getColorByCard(cardKey, value, lookUpKey) !== "bg-highlightGrey" && isLatest;
+  const colorClass = getColorByCard(cardKey, value, lookUpKey);
 
-    if (active) {
-      setIsActive(false);
-      setTimeout(() => setIsActive(true), 1000);
-    } else {
-      setIsActive(false);
+  // Only trigger flip on the latest guess OR when key changes (new guess)
+  useEffect(() => {
+    if (isLatest && colorClass !== "bg-highlightGrey") {
+      setFlip(true);
+
+      // reset flip after animation duration (1s)
+      const timer = setTimeout(() => setFlip(false), 1000);
+      return () => clearTimeout(timer);
     }
-  }, [cardKey, value, lookUpKey, isLatest]);
+  }, [cardKey, value, lookUpKey, isLatest]); // key things that change per guess
+
 
   /*----handling arrow changes ----*/
   function higherOrLower(value: Value, answer: Value) {
@@ -86,7 +88,7 @@ export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Inpu
   return (
     <div
       key={cardKey}
-      className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(label, value, lookUpKey)} ${isActive ? "flip-once" : ""} text-black rounded-2xl backface-hidden`}
+      className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(label, value, lookUpKey)} ${flip ? "flip-once" : ""} text-black rounded-2xl backface-hidden`}
     >
       <div className="h-[50%] ">{renameLabel(label)}</div>
       <div className="flex flex-row justify-center gap-0.5 font-bold h-[50%]">

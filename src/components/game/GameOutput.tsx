@@ -57,7 +57,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                 .map(([cardKey, value], guessIndex) => {
                   return (
                     <GuessInfoLower
-                      key={`${cardKey} - ${guessIndex}`}
+                      key={`${cardKey} - ${guessIndex} -${guess}`}
                       cardKey={cardKey}
                       label={cardKey}
                       value={value}
