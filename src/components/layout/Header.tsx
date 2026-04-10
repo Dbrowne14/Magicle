@@ -1,7 +1,7 @@
 
 const Header = () => {
   return (
-    <nav className="h-full bg-black">
+    <nav className="h-20 bg-black">
     </nav>
   )
 }

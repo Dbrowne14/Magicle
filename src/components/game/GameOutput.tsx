@@ -27,6 +27,26 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
         );
 
         if (!guessData) return null;
+        
+        const guessStructure = guessData[0]
+        const {cmc, year, icon_svg_uri, price, pips, edhrec_rank, name, set_name, islegendary, type, img, oracle_text, rarity, colors } =  guessStructure
+
+        const structuredObject = {
+          cmc,
+          year,
+          price,
+          pips,
+          icon_svg_uri, 
+          edhrec_rank,
+          name,
+          set_name,
+          islegendary,
+          type,
+          img,
+          oracle_text,
+          rarity,
+          colors
+        }
 
         return (
           <div
@@ -36,13 +56,13 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
             <GuessInfoUpper
               key={guess}
               cardKey={guess}
-              guess={guessData[0]}
+              guess={guessStructure}
               answer={todaysWord}
               isLatest={key === 0}
             />
 
-            <div className="flex-1 flex flex-wrap justify-center items-center">
-              {typedEntries(guessData[0] ?? {})
+            <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-2 w-full h-full auto-rows-frjustify-center items-center">
+              {typedEntries(structuredObject ?? {})
                 .filter(
                   ([key]) =>
                     key === "cmc" ||

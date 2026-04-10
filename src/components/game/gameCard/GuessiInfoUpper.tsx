@@ -58,7 +58,7 @@ export const GuessInfoUpper = ({
   return (
     <div
       key={cardKey}
-      className="h-40 border-b border-white inline-flex px-3 items-center justify-center gap-4"
+      className="h-40 border-b border-white inline-flex items-center justify-center gap-6"
     >
       <img src={guess.img} className="h-[90%]"></img>
       <div className="flex flex-col gap-6 justify-end pb-4 h-full">

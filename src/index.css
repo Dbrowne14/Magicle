@@ -4,6 +4,7 @@
   --color-highlightGreen: #166534;
   --color-highlightYellow: var(--color-yellow-300);
   --color-highlightGrey: var(--color-gray-400);
+  --font-poppins: "Poppins", sans-serif;
 }
 
 @layer base {
@@ -28,7 +29,7 @@
   }
 
   body {
-    @apply m-0 flex place-items-center min-h-screen bg-[rgba(1,1,1,0.9)] text-white;
+    @apply m-0 flex place-items-center min-h-screen bg-[rgba(1,1,1,0.9)] text-white font-poppins;
   }
 
   h1 {
