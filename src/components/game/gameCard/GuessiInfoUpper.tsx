@@ -14,10 +14,15 @@ const handleType = (type: string[]) => {
   return capitalisedTypes.join(" ");
 };
 
-export const GuessInfoUpper = ({ cardKey, guess, answer, isLatest }: CardName) => {
-  const [flipBuckets, setFlipBuckets] = useState<string[]>([])
+export const GuessInfoUpper = ({
+  cardKey,
+  guess,
+  answer,
+  isLatest,
+}: CardName) => {
+  const [flipBuckets, setFlipBuckets] = useState<string[]>([]);
   const { rarity, type, name, islegendary } = guess;
-
+  if (!answer) return null;
   const isSame = (a: string[], b: string[]) => {
     return a.length === b.length && a.every((val, i) => val === b[i]);
   };
@@ -25,28 +30,30 @@ export const GuessInfoUpper = ({ cardKey, guess, answer, isLatest }: CardName) =
   const typeClass = isSame(type, answer.type)
     ? "bg-highlightGreen"
     : hasMatch
-    ? "bg-highlightYellow"
-    : "bg-highlightGrey";
+      ? "bg-highlightYellow"
+      : "bg-highlightGrey";
 
-
-  const rarityClass = rarity === answer.rarity ? "bg-highlightGreen" : "bg-highlightGrey";
-  const legendaryClass = islegendary === answer.islegendary ? "bg-highlightGreen" : "bg-highlightGrey";
+  const rarityClass =
+    rarity === answer.rarity ? "bg-highlightGreen" : "bg-highlightGrey";
+  const legendaryClass =
+    islegendary === answer.islegendary
+      ? "bg-highlightGreen"
+      : "bg-highlightGrey";
 
   useEffect(() => {
     if (!isLatest) return;
 
-      const bucketsToFlip: string[] = [];
+    const bucketsToFlip: string[] = [];
 
-      if (rarity === answer.rarity) bucketsToFlip.push("rarity");
-      if (islegendary === answer.islegendary) bucketsToFlip.push("legendary");
-      if (typeClass !== "bg-highlightGrey") bucketsToFlip.push("type");
+    if (rarity === answer.rarity) bucketsToFlip.push("rarity");
+    if (islegendary === answer.islegendary) bucketsToFlip.push("legendary");
+    if (typeClass !== "bg-highlightGrey") bucketsToFlip.push("type");
 
-      setFlipBuckets(bucketsToFlip);
+    setFlipBuckets(bucketsToFlip);
 
-      // Remove flip class after animation duration (1s)
-      const timer = setTimeout(() => setFlipBuckets([]), 1000);
-      return () => clearTimeout(timer);
-  
+    // Remove flip class after animation duration (1s)
+    const timer = setTimeout(() => setFlipBuckets([]), 1000);
+    return () => clearTimeout(timer);
   }, [isLatest, rarity, islegendary, typeClass]);
   return (
     <div
@@ -67,7 +74,9 @@ export const GuessInfoUpper = ({ cardKey, guess, answer, isLatest }: CardName) =
           >
             {islegendary ? "Legendary" : "Non-legendary"}
           </h2>
-          <h2 className={`${typeClass} ${flipBuckets.includes("type") ? "flip-once" : ""} px-2 rounded-2xl`}>
+          <h2
+            className={`${typeClass} ${flipBuckets.includes("type") ? "flip-once" : ""} px-2 rounded-2xl`}
+          >
             {handleType(type)}
           </h2>
         </div>
@@ -75,5 +84,3 @@ export const GuessInfoUpper = ({ cardKey, guess, answer, isLatest }: CardName) =
     </div>
   );
 };
-
-

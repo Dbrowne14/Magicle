@@ -17,11 +17,13 @@ let todaysWord: ReturnStructure = {
   year: 0,
   rarity: "",
   set_code: "",
+  icon_svg_uri: "",
   set_name: "",
   price: 0,
   pips: [""],
   colors: 0,
-  edhrec_rank: 0
+  edhrec_rank: 0,
+  oracle_text: ""
 };
 
 const Gameboard = () => {
@@ -55,7 +57,7 @@ const Gameboard = () => {
       }
       const data = await response.json();
       todaysWord = data;
-      console.log(todaysWord)
+      console.log("tdays word is",todaysWord)
     };
 
     fetchWord();

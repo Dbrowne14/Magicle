@@ -14,6 +14,8 @@ export interface ReturnStructure {
   pips: string[];
   colors: number;
   edhrec_rank: number;
+  icon_svg_uri: string;
+  oracle_text:string
 }
 
 export interface TodaysWord {

@@ -47,7 +47,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                   ([key]) =>
                     key === "cmc" ||
                     key === "year" ||
-                    key === "set_code" ||
+                    key === "icon_svg_uri" ||
                     key === "price" ||
                     key === "pips" ||
                     key === "edhrec_rank",

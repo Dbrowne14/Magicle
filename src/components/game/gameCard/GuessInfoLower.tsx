@@ -96,7 +96,7 @@ export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Inpu
       <div className="flex flex-row justify-center gap-0.5 font-bold h-[50%]">
         <CardValue label={label} value={value} />
         {checkforKeyName(label) && value !== lookUpKey && (
-          <div className="font-normal flex flex-start">
+          <div className="font-normal flex items-end">
             {higherOrLower(value, lookUpKey) === "Lower" ? (<ArrowDown className="w-4 h-3"/>) : (<ArrowUp className="w-4 h-3 "/>)}
           </div>
         )}
