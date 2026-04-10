@@ -52,6 +52,11 @@ export const CardValue = ({ label, value }: CardValueProps) => {
             })}
         </div>
       );
+    case "icon_svg_uri":
+      if (typeof value === "string") {
+        return <img src={value} className="h-full" alt="icon" />;
+      }
+      return null;
     default:
       return <div className="h-[50%]">{handleValue()}</div>;
   }

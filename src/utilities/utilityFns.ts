@@ -10,7 +10,7 @@ export const isSimilar = (a: string[], b: string[]) => {
 
 export  const renameLabel = (label: string) => {
   const labelCap = capitalizeFirst(label);
-  if (label === "set_code") return "Set";
+  if (label === "icon_svg_uri") return "Set";
   else if (label === "edhrec_rank") return "Rank";
   else return labelCap;
 };
