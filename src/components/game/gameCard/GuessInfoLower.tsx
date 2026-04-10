@@ -3,6 +3,8 @@ import { CardValue } from "./CardValue";
 import type { Value, Input } from "../../../types/types";
 import { renameLabel, isSame, isSimilar } from "../../../utilities/utilityFns";
 import { useState, useEffect } from "react";
+import { ArrowUp, ArrowDown } from "lucide-react";
+
 
 const variableOrange = {
   cmc: 2,
@@ -94,8 +96,8 @@ export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Inpu
       <div className="flex flex-row justify-center gap-0.5 font-bold h-[50%]">
         <CardValue label={label} value={value} />
         {checkforKeyName(label) && value !== lookUpKey && (
-          <div className="font-normal">
-            {higherOrLower(value, lookUpKey) === "Lower" ? "v" : "^"}
+          <div className="font-normal flex flex-start">
+            {higherOrLower(value, lookUpKey) === "Lower" ? (<ArrowDown className="w-4 h-3"/>) : (<ArrowUp className="w-4 h-3 "/>)}
           </div>
         )}
       </div>

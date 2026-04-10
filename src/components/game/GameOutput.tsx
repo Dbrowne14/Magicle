@@ -28,8 +28,6 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
 
         if (!guessData) return null;
 
-        console.log(guessData);
-
         return (
           <div
             className="flex flex-1 flex-col h-full border border-white"
