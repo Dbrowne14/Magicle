@@ -82,7 +82,7 @@ const Gameboard = () => {
 
   return (
     <div className="h-full flex flex-col gap-8 justify-center items-center">
-      <h1 className="text-white">Staple</h1>
+      <h1 className="text-white mt-10">Staple</h1>
       <div className="flex flex-col h-full w-90">
         <GameInput
           setGuessState={setGuessState}

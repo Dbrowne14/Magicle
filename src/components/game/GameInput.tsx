@@ -66,7 +66,7 @@ const GameInput = ({
         />
 
         {suggestions.length > 0 && (
-          <ul className="absolute m-0 p-0 bg-white text-black max-h-60 overflow-y-auto w-full">
+          <ul className="absolute m-0 p-0 top-full bg-white text-black max-h-60 overflow-y-auto w-full">
             {suggestions.map((item, id) => (
               <li
                 key={id}

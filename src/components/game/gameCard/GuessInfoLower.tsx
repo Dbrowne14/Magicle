@@ -90,13 +90,13 @@ export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Inpu
   return (
     <div
       key={cardKey}
-      className={`flex flex-col border border-white h-[40%] w-25 text-center ${getColorByCard(label, value, lookUpKey)} ${flip ? "flip-once" : ""} text-black rounded-2xl backface-hidden`}
+      className={`flex flex-col  h-12 w-full text-center ${getColorByCard(label, value, lookUpKey)} ${flip ? "flip-once" : ""} text-black rounded-2xl backface-hidden`}
     >
       <div className="h-[50%] ">{renameLabel(label)}</div>
       <div className="flex flex-row justify-center gap-0.5 font-bold h-[50%]">
         <CardValue label={label} value={value} />
         {checkforKeyName(label) && value !== lookUpKey && (
-          <div className="font-normal flex items-end">
+          <div className="font-normal flex items-center">
             {higherOrLower(value, lookUpKey) === "Lower" ? (<ArrowDown className="w-4 h-3"/>) : (<ArrowUp className="w-4 h-3 "/>)}
           </div>
         )}

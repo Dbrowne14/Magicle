@@ -50,7 +50,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
 
         return (
           <div
-            className="flex flex-1 flex-col h-full border border-white"
+            className="flex flex-1 flex-col h-full "
             key={key}
           >
             <GuessInfoUpper
@@ -61,7 +61,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
               isLatest={key === 0}
             />
 
-            <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-2 w-full h-full auto-rows-frjustify-center items-center">
+            <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-2 w-full h-full auto-rows-fr justify-center items-center">
               {typedEntries(structuredObject ?? {})
                 .filter(
                   ([key]) =>
