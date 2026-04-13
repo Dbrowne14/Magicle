@@ -79,7 +79,7 @@ const Gameboard = () => {
           </div>
         )}
 
-        <ClueState setClueState={setClueState} todaysWord={todaysWord} clueState={clueState}/>
+        <ClueState setClueState={setClueState} todaysWord={todaysWord} clueState={clueState} round={round}/>
 
         <GameInput
           setGuessState={setGuessState}

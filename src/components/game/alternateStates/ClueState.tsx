@@ -7,12 +7,13 @@ interface ClueStateProps {
   setClueState: React.Dispatch<React.SetStateAction<boolean>>;
   todaysWord: ReturnStructure | null;
   clueState: boolean;
+  round: number;
 }
 
-export const ClueState = ({ setClueState, todaysWord, clueState }: ClueStateProps) => {
+export const ClueState = ({ setClueState, todaysWord, clueState, round }: ClueStateProps) => {
   return (
     <div
-      className={`fixed  flex-col top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-[rgba(1,1,1,0.95)] w-80 h-100 rounded-2xl items-center justify-center gap-1 py-2 ${clueState ? "flex" : "hidden"}`}
+      className={`fixed  flex-col top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-[rgba(1,1,1,0.95)] w-80 h-100 rounded-2xl items-center justify-center gap-1 py-2 ${clueState && round !==10 ? "flex" : "hidden"}`}
     >
       <div className="relative w-full">
         <img src={clueHeading} className="w-full" />{" "}
