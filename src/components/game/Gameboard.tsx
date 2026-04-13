@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import EndState from "./alternateStates/EndState";
 import type { ReturnStructure } from "../../types/types";
 import { ClueState } from "./alternateStates/ClueState";
+import logo from "../../../public/Mgicle_Favicon.png"
 
 const roundLimit = 10;
 
@@ -65,7 +66,10 @@ const Gameboard = () => {
 
   return (
     <div className="h-full flex flex-col gap-8 justify-center items-center">
-      <h1 className="text-white mt-10">Staple</h1>
+      <div className="w-full flex flex-row items-center justify-center mt-10">
+        <img src={logo} className="h-20"/>
+        <h1 className="text-[#ceac5e] ">taple</h1>
+      </div>
       <div className="flex flex-col h-full w-90">
         {round > 6 && (
           <div className={`flex justify-end w-full  ${round === 7 ? "animate-pulse" : "animate-none"}`}>
