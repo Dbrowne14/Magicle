@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 type CardName = {
   cardKey: string;
   guess: ReturnStructure;
-  answer: ReturnStructure;
+  answer: ReturnStructure | null;
   isLatest: boolean;
 };
 

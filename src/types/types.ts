@@ -30,6 +30,6 @@ export type Input = {
   cardKey: CardKey;
   value: Value;
   label: string;
-  answer: ReturnStructure;
+  answer: ReturnStructure | null;
   isLatest: boolean;
 };

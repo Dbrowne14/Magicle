@@ -5,7 +5,7 @@ import type { ReturnStructure } from "../../types/types";
 type Output = {
   guessState: string[];
   allCards: ReturnStructure[] | null;
-  todaysWord: ReturnStructure;
+  todaysWord: ReturnStructure | null;
 };
 
 const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {

@@ -6,25 +6,6 @@ import type { ReturnStructure } from "../../types/types";
 
 const roundLimit = 10;
 
-let todaysWord: ReturnStructure = {
-  id: 0,
-  scryfall_id: "",
-  name: "",
-  cmc: 0,
-  type: [""],
-  islegendary: false,
-  img: "",
-  year: 0,
-  rarity: "",
-  set_code: "",
-  icon_svg_uri: "",
-  set_name: "",
-  price: 0,
-  pips: [""],
-  colors: 0,
-  edhrec_rank: 0,
-  oracle_text: ""
-};
 
 const Gameboard = () => {
   const [guessState, setGuessState] = useState<string[]>([]);
@@ -32,15 +13,17 @@ const Gameboard = () => {
   const [round, setRound] = useState<number>(0);
   const [result, setResult] = useState("");
   const [allCards, setAllCards] = useState<ReturnStructure[] | null>(null);
+  const [todaysWord, setTodaysWord] = useState<ReturnStructure | null>(null);
 
   useEffect(() => {
+    if (!todaysWord) return
     if (round >= roundLimit) {
       setEndgame(true);
       console.log("Lose conditon");
       console.log(endGame);
       setResult("Lose");
     }
-    if (guessState.includes(todaysWord.name)) {
+    if (guessState.includes(todaysWord?.name)) {
       console.log("Win conditon");
       setEndgame(true);
       setResult("Win");
@@ -56,8 +39,7 @@ const Gameboard = () => {
         console.log("Fetch Error");
       }
       const data = await response.json();
-      todaysWord = data;
-      console.log("tdays word is",todaysWord)
+      setTodaysWord(data);
     };
 
     fetchWord();
@@ -84,15 +66,26 @@ const Gameboard = () => {
     <div className="h-full flex flex-col gap-8 justify-center items-center">
       <h1 className="text-white mt-10">Staple</h1>
       <div className="flex flex-col h-full w-90">
+        <div className="flex justify-end w-full">
+          <h2 className="pr-2">Want a hint?</h2>
+        </div>
+        <div className="fixed flex flex-col top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-[rgba(1,1,1,0.9)] w-80 h-80 rounded-2xl  items-center justify-center gap-4">
+          <h2>Hint</h2>
+          <p>{todaysWord?.oracle_text}</p>
+        </div>
         <GameInput
           setGuessState={setGuessState}
           guessState={guessState}
           round={round}
           setRound={setRound}
           endGame={endGame}
-          allCards = {allCards}
+          allCards={allCards}
         />
-        <GameOutput guessState={guessState} allCards = {allCards} todaysWord = {todaysWord}/>
+        <GameOutput
+          guessState={guessState}
+          allCards={allCards}
+          todaysWord={todaysWord}
+        />
       </div>
       {endGame && <EndState result={result} todaysWord={todaysWord} />}
     </div>

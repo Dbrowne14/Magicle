@@ -14,9 +14,10 @@ const variableOrange = {
 } as const;
 
 type VariableOrange = keyof typeof variableOrange;
-type validInCard = Extract<VariableOrange, keyof ReturnStructure>;
+type validInCard = Extract<VariableOrange, keyof ReturnStructure | null>;
 
 export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Input) => {
+  if(!answer) return;
   const lookUpKey = answer[cardKey];
   const [flip, setFlip] = useState(false);
 
@@ -28,7 +29,7 @@ export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Inpu
     return false;
   }
 
-  function getColorByCard(cardKey: string, value: Value, answer: Value) {
+  function getColorByCard(cardKey: string, value: Value, answer: Value ) {
     if (cardKey === "pips") {
       if (
         Array.isArray(value) &&
