@@ -1,11 +1,9 @@
 import GameInput from "./GameInput";
 import GameOutput from "./GameOutput";
 import { useState, useEffect } from "react";
-import EndState from "./EndState";
+import EndState from "./alternateStates/EndState";
 import type { ReturnStructure } from "../../types/types";
-import clueHeading from "../../assets/clue/clueHeading.png";
-import clueText from "../../assets/clue/clueText.png";
-import fitty from "fitty";
+import { ClueState } from "./alternateStates/ClueState";
 
 const roundLimit = 10;
 
@@ -70,26 +68,14 @@ const Gameboard = () => {
       <h1 className="text-white mt-10">Staple</h1>
       <div className="flex flex-col h-full w-90">
         {round > 6 && (
-          <div className="flex justify-end w-full">
+          <div className={`flex justify-end w-full  ${round === 7 ? "animate-pulse" : "animate-none"}`}>
             <h2 className="pr-2" onClick={() => setClueState(true)}>
               Use your clue token?
             </h2>
           </div>
         )}
 
-        <div
-          className={`fixed  flex-col top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-[rgba(1,1,1,0.95)] w-80 h-100 rounded-2xl items-center justify-center gap-1 py-2 ${clueState ? "flex" : "hidden"}`}
-        >
-          <img src={clueHeading} className="w-full" />
-          <div className="h-[50%] px-3 overflow-hidden flex flex-col">
-            <h2 className="text-sm mb-1 shrink-0">Oracle Text</h2>
-
-            <p className="text-[0.8rem] leading-tight overflow-hidden">
-              {todaysWord?.oracle_text}
-            </p>
-          </div>
-          <img src={clueText} className="w-full" />
-        </div>
+        <ClueState setClueState={setClueState} todaysWord={todaysWord} clueState={clueState}/>
 
         <GameInput
           setGuessState={setGuessState}
