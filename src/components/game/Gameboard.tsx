@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import EndState from "./alternateStates/EndState";
 import type { ReturnStructure } from "../../types/types";
 import { ClueState } from "./alternateStates/ClueState";
-import logo from "../../../public/Mgicle_Favicon.png"
+import logo from "../../../public/Mgicle_Favicon.png";
 
 const roundLimit = 10;
 
@@ -67,24 +67,32 @@ const Gameboard = () => {
   return (
     <div className="h-full flex flex-col gap-8 justify-center items-center">
       <div className="w-full flex flex-row items-center justify-center mt-10">
-        <img src={logo} className="h-20"/>
+        <img src={logo} className="h-20" />
         <h1 className="text-[#ceac5e] ">taple</h1>
       </div>
-      <div className="flex flex-col h-full w-90">
-        {round > 6 && (
-          <div className={`flex justify-end w-full  ${round === 7 ? "animate-pulse" : "animate-none"}`}>
-            <h2 className="pr-2" onClick={() => setClueState(true)}>
-              Use your clue token?
-            </h2>
-          </div>
-        )}
-
-        <ClueState setClueState={setClueState} todaysWord={todaysWord} clueState={clueState} round={round}/>
+      <div className="flex flex-col h-full w-90 gap-1">
+        <div className="flex flex-row items-center justify-between">
+          <h2 className="w-full">Guess {round + 1} of 10</h2>
+          {round > 6 && (
+            <div
+              className={`flex justify-end w-full  ${round === 7 ? "animate-pulse" : "animate-none"}`}
+            >
+              <h2 className="pr-2" onClick={() => setClueState(true)}>
+                Use your clue token?
+              </h2>
+            </div>
+          )}
+        </div>
+        <ClueState
+          setClueState={setClueState}
+          todaysWord={todaysWord}
+          clueState={clueState}
+          round={round}
+        />
 
         <GameInput
           setGuessState={setGuessState}
           guessState={guessState}
-          round={round}
           setRound={setRound}
           endGame={endGame}
           allCards={allCards}

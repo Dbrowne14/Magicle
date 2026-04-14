@@ -18,7 +18,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
   }
 
   return (
-    <div className="flex flex-col gap-10 border border-white">
+    <div className="flex flex-col gap-10">
       {guessState.map((guess, key) => {
         if (!allCards) return;
 

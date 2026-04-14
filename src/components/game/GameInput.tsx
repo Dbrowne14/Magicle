@@ -4,7 +4,6 @@ import type { ReturnStructure } from "../../types/types";
 type GuessProps = {
   guessState: string[];
   setGuessState: React.Dispatch<React.SetStateAction<string[]>>;
-  round: number;
   setRound: React.Dispatch<React.SetStateAction<number>>;
   endGame: boolean;
   allCards: ReturnStructure[] | null;
@@ -13,7 +12,6 @@ type GuessProps = {
 const GameInput = ({
   guessState,
   setGuessState,
-  round,
   setRound,
   endGame,
   allCards,
@@ -50,19 +48,19 @@ const GameInput = ({
   };
 
   return (
-    <div className="h-12 border border-white text-white inline-flex ">
-      <div className="inline-flex relative w-[60%]">
+    <div className="h-10 text-white inline-flex mb-6">
+      <div className="inline-flex relative w-full">
         <input
           type="text"
           name="SearchBar"
           value={roundGuess}
           disabled={endGame}
-          placeholder="Search..."
+          placeholder=" Search..."
           onChange={(e) => {
             e.preventDefault;
             setRoundGuess(e.target.value);
           }}
-          className="w-full"
+          className="w-full rounded-2xl border border-white"
         />
 
         {suggestions.length > 0 && (
@@ -79,9 +77,7 @@ const GameInput = ({
           </ul>
         )}
       </div>
-      <div className="flex items-center">
-        <h2 className="text-center">Guess {round + 1} of 10</h2>
-      </div>
+ 
     </div>
   );
 };
