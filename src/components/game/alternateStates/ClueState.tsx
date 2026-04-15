@@ -10,10 +10,15 @@ interface ClueStateProps {
   round: number;
 }
 
-export const ClueState = ({ setClueState, todaysWord, clueState, round }: ClueStateProps) => {
+export const ClueState = ({
+  setClueState,
+  todaysWord,
+  clueState,
+  round,
+}: ClueStateProps) => {
   return (
     <div
-      className={`fixed flex-col overlay bg-[rgba(1,1,1,1)] hover:cursor-pointer gameWidth h-110 rounded-2xl items-center justify-center gap-1 py-2 ${clueState && round !==10 ? "flex" : "hidden"}`}
+      className={`fixed flex-col overlay bg-[rgba(1,1,1,1)] hover:cursor-pointer gameWidth h-110 rounded-2xl items-center justify-center gap-1 py-2 ${clueState && round !== 10 ? "flex" : "hidden"}`}
     >
       <div className="relative w-full ">
         <img src={clueHeading} className="w-full" />{" "}

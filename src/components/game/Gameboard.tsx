@@ -73,7 +73,7 @@ const Gameboard = () => {
         <h1 className="text-headerOrange ">taple</h1>
       </div>
       <div className="flex flex-col h-full gameWidth gap-1">
-        <GameInformation round={round} setClueState={setClueState} />
+        <GameInformation round={round} setClueState={setClueState}/>
         <GameInput
           setGuessState={setGuessState}
           guessState={guessState}
