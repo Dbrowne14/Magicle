@@ -8,7 +8,7 @@ export const GameInformation = ({round, setClueState}: {round: number, setClueSt
         <div
           className={`flex justify-end w-full hover:cursor-pointer ${round === 7 ? "animate-pulse" : "animate-none"}`}
         >
-          <h2 className="pr-2 text-headerOrange" onClick={() => setClueState(true)}>
+          <h2 className="pr-2 text-white" onClick={() => setClueState(true)}>
             Use your clue token?
           </h2>
         </div>

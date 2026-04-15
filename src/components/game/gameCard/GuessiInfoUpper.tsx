@@ -58,11 +58,11 @@ export const GuessInfoUpper = ({
   return (
     <div
       key={cardKey}
-      className="h-40 inline-flex items-center justify-center gap-6"
+      className="h-40 inline-flex items-center justify-center gap-6 pb-1"
     >
-      <img src={guess.img} className="h-[90%]"></img>
+      <img src={guess.img} className="h-full"></img>
       <div className="flex flex-col gap-6 justify-end pb-4 h-full">
-        <h2 className="h-fit w-full">{name}</h2>
+        <h2 className="h-fit w-full font-bold text-headerOrange">{name}</h2>
         <div className="inline-flex flex-wrap gap-2 text-black">
           <h2
             className={`${rarityClass} ${flipBuckets.includes("rarity") ? "flip-once" : ""} px-2 rounded-2xl`}

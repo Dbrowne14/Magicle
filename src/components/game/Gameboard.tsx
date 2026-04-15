@@ -5,7 +5,7 @@ import EndState from "./alternateStates/EndState";
 import type { ReturnStructure } from "../../types/types";
 import { ClueState } from "./alternateStates/ClueState";
 import logo from "../../../public/Mgicle_Favicon.png";
-import { GameInformation } from "./GamInformation";
+import { GameInformation } from "./GameInformation";
 import { HowToPlay } from "./alternateStates/HowToPlay";
 
 const roundLimit = 10;
@@ -68,11 +68,11 @@ const Gameboard = () => {
 
   return (
     <div className="h-full flex flex-col gap-8 justify-center items-center">
-      <div className="w-full flex flex-row items-center justify-center mt-10">
+      <div className="gameWidth flex flex-row items-center justify-center mt-10">
         <img src={logo} className="h-20" />
         <h1 className="text-headerOrange ">taple</h1>
       </div>
-      <div className="flex flex-col h-full w-90 gap-1">
+      <div className="flex flex-col h-full gameWidth gap-1">
         <GameInformation round={round} setClueState={setClueState} />
         <GameInput
           setGuessState={setGuessState}

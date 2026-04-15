@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-highlightGreen: #166534;
+  --color-highlightGreen: rgba(53,209,123,0.9);
   --color-highlightYellow: var(--color-yellow-300);
   --color-highlightGrey: var(--color-gray-400);
   --font-poppins: "Poppins", sans-serif;
@@ -81,7 +81,11 @@
   }
 
   .overlay {
-    @apply left-1/2 top-[30%] md:top-[15%] -translate-x-1/2 z-50;
+    @apply left-1/2 top-[30%] md:top-80 -translate-x-1/2 z-50;
+  }
+
+  .gameWidth {
+    @apply w-90
   }
 
   @keyframes flipOnce {
