@@ -23,12 +23,9 @@ const Gameboard = () => {
     if (!todaysWord) return;
     if (round >= roundLimit) {
       setEndgame(true);
-      console.log("Lose conditon");
-      console.log(endGame);
       setResult("Lose");
     }
     if (guessState.includes(todaysWord?.name)) {
-      console.log("Win conditon");
       setEndgame(true);
       setResult("Win");
     }
