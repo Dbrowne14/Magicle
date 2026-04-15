@@ -5,6 +5,7 @@
   --color-highlightYellow: var(--color-yellow-300);
   --color-highlightGrey: var(--color-gray-400);
   --font-poppins: "Poppins", sans-serif;
+  --color-headerOrange: #ceac5e;
 }
 
 @layer base {
@@ -77,6 +78,10 @@
 
   .backface-hidden {
     backface-visibility: hidden;
+  }
+
+  .overlay {
+    @apply left-1/2 top-[30%] md:top-[15%] -translate-x-1/2 z-50;
   }
 
   @keyframes flipOnce {
