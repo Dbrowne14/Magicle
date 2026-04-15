@@ -45,7 +45,7 @@ export const CardValue = ({ label, value }: CardValueProps) => {
                   key={index}
                   id={label}
                   src={handlePips(img)}
-                  className="h-full p-[2.5px]"
+                  className="h-full p-[0.1rem]"
                   alt={img}
                 />
               );
@@ -54,7 +54,7 @@ export const CardValue = ({ label, value }: CardValueProps) => {
       );
     case "icon_svg_uri":
       if (typeof value === "string") {
-        return <img src={value} className="h-full" alt="icon" />;
+        return <img src={value} className="h-full p-[0.1rem]" alt="icon" />;
       }
       return null;
     default:
