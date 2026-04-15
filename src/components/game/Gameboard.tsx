@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import EndState from "./alternateStates/EndState";
 import type { ReturnStructure } from "../../types/types";
 import { ClueState } from "./alternateStates/ClueState";
-import logo from "../../../public/Mgicle_Favicon.png";
+import logo from "../../../public/Staple_Favicon.png";
 import { GameInformation } from "./GameInformation";
 import { HowToPlay } from "./alternateStates/HowToPlay";
 
