@@ -87,7 +87,17 @@ const Gameboard = () => {
           todaysWord={todaysWord}
         />
         {round === 1 && <HowToPlay />}
-        {round === 0 && <div className="flex flex-center"> <h3 className="text-center italic text-[0.9rem]"> You have 10 guesses to find today’s Commander Staple — a card ranked among the top 1000 most-played non-land cards in MTG Commander.</h3> </div>}
+        {round === 0 && (
+          <div className="flex flex-center">
+            {" "}
+            <h3 className="text-center italic text-[0.9rem]">
+              {" "}
+              You have 10 guesses to find today’s Commander Staple — a card
+              ranked among the top 1000 most-played non-land cards in MTG
+              Commander.
+            </h3>{" "}
+          </div>
+        )}
       </div>
       <ClueState
         setClueState={setClueState}
