@@ -5,6 +5,7 @@ import EndState from "./alternateStates/EndState";
 import type { ReturnStructure } from "../../types/types";
 import { ClueState } from "./alternateStates/ClueState";
 import logo from "../../../public/Mgicle_Favicon.png";
+import { GameInformation } from "./GamInformation";
 
 const roundLimit = 10;
 
@@ -71,25 +72,7 @@ const Gameboard = () => {
         <h1 className="text-[#ceac5e] ">taple</h1>
       </div>
       <div className="flex flex-col h-full w-90 gap-1">
-        <div className="flex flex-row items-center justify-between">
-          <h2 className="w-full">Guess {round + 1} of 10</h2>
-          {round > 6 && (
-            <div
-              className={`flex justify-end w-full  ${round === 7 ? "animate-pulse" : "animate-none"}`}
-            >
-              <h2 className="pr-2" onClick={() => setClueState(true)}>
-                Use your clue token?
-              </h2>
-            </div>
-          )}
-        </div>
-        <ClueState
-          setClueState={setClueState}
-          todaysWord={todaysWord}
-          clueState={clueState}
-          round={round}
-        />
-
+        <GameInformation round={round} setClueState={setClueState} />
         <GameInput
           setGuessState={setGuessState}
           guessState={guessState}
@@ -103,6 +86,12 @@ const Gameboard = () => {
           todaysWord={todaysWord}
         />
       </div>
+      <ClueState
+        setClueState={setClueState}
+        todaysWord={todaysWord}
+        clueState={clueState}
+        round={round}
+      />
       {endGame && <EndState result={result} todaysWord={todaysWord} />}
     </div>
   );
