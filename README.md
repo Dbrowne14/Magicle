@@ -38,3 +38,60 @@ Magicle is a **Magic: The Gathering Wordle-style game** built with **React**, **
 ```bash
 git clone https://github.com/Dbrowne14/Magicle.git
 cd Magicle
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+### 3. Run the development server
+```bash
+npm run dev
+```
+### 4. Build for production
+```bash
+npm run build
+```
+### 5. Preview production build
+```bash
+npm run preview
+```
+### 📦 Key Dependencies
+
+- react – UI framework
+- react-dom – DOM rendering
+- tailwindcss – Utility-first styling
+- @tailwindcss/vite – Tailwind + Vite integration
+- lucide-react – Icons
+- react-select – Dropdown/select components
+- fitty – Text resizing
+
+### 🧠 Game Logic Overview
+
+- Players submit guesses via input/select
+- Each guess is compared to the target card
+- Feedback is generated based on:
+- Matching colors
+- Mana value proximity
+- Type match
+- Rarity match
+- UI updates dynamically per guess
+
+### 📁 Project Structure 
+
+[App Structure](./public//StapleAppStructure.png)
+
+### Data is fetched from:
+
+👉 https://api.scryfall.com
+
+### 🚧 Future Improvements
+Daily challenge mode
+Score tracking
+Better animations
+Mobile UX improvements
+Caching API responses
+
+### 📄 License
+
+ISC
