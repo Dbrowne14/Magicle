@@ -8,11 +8,11 @@ type EndState = {
 
 const EndState = ({ result, todaysWord }: EndState) => {
   return (
-    <div className="fixed flex flex-col overlay bg-[rgba(1,1,1,0.9)] w-80 h-80 rounded-2xl  items-center justify-center gap-4">
+    <div className="fixed flex flex-col overlay bg-[rgba(1,1,1,0.95)] w-80 h-100 rounded-2xl  items-center justify-center gap-4 p-4">
       <h2>You {result}</h2>
 
-        <img src={todaysWord?.img} className="w-40" />
-        <h2>Todays card is {todaysWord?.name}</h2>
+      <img src={todaysWord?.img} className="w-40" />
+      <h2 className="w-fit text-center">Today's card is: <br></br><span className="font-bold text-headerOrange">{todaysWord?.name}</span></h2>
     </div>
   );
 };
