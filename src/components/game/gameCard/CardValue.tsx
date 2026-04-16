@@ -49,7 +49,7 @@ export const CardValue = ({ label, value }: CardValueProps) => {
                   key={index}
                   id={label}
                   src={handlePips(img)}
-                  className="h-full p-[0.1rem]"
+                  className="h-full p-[0.1rem] size-[24.8px]"
                   alt={img}
                 />
               );
