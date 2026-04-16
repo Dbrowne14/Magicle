@@ -8,6 +8,7 @@ interface CardValueProps {
 
 export const CardValue = ({ label, value }: CardValueProps) => {
   const handlePips = (pip: string) => {
+    console.log(`[DEBUG] Processing pip: "${pip}"`)
     switch (pip) {
       case "G":
         return wubrg.forest;
@@ -21,6 +22,9 @@ export const CardValue = ({ label, value }: CardValueProps) => {
         return wubrg.plains;
       case "colorless":
         return wubrg.colorless;
+      default: 
+      console.log(`[DEBUG] No match found for pip: "${pip}"`); // Catch unhandled symbols
+      return;
     }
   };
   const handleValue = () => {
