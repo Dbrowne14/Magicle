@@ -22,7 +22,7 @@ export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Inpu
   const [flip, setFlip] = useState(false);
 
   /*----handling color changes ----*/
-  function checkforKeyName(key: string): key is validInCard {
+  function checkforKeyName(_key: string): _key is validInCard {
     if (cardKey in variableOrange) {
       return true;
     }
