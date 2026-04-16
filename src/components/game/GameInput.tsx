@@ -55,12 +55,12 @@ const GameInput = ({
           name="SearchBar"
           value={roundGuess}
           disabled={endGame}
-          placeholder=" Search..."
+          placeholder="Type a guess here..."
           onChange={(e) => {
             e.preventDefault;
             setRoundGuess(e.target.value);
           }}
-          className="w-full rounded-2xl border border-white"
+          className="w-full rounded-2xl border border-white pl-2"
         />
 
         {suggestions.length > 0 && (
