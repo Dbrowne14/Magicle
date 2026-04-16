@@ -1,15 +1,9 @@
-import colorless from "/manaSymbols/colorless.svg";
-import plains from "/manaSymbols/plains.svg";
-import island from "/manaSymbols/island.svg";
-import swamp from "/manaSymbols/swamp.svg";
-import mountain from "/manaSymbols/mountain.svg";
-import forest from "/manaSymbols/forest.svg";
 
 export const wubrg = {
-  colorless: colorless,
-  plains: plains,
-  island: island,
-  swamp: swamp,
-  mountain: mountain,
-  forest: forest,
+  colorless: "https://svgs.scryfall.io/card-symbols/C.svg",
+  plains: "https://svgs.scryfall.io/card-symbols/W.svg",
+  island: "https://svgs.scryfall.io/card-symbols/U.svg",
+  swamp: "https://svgs.scryfall.io/card-symbols/B.svg",
+  mountain: "https://svgs.scryfall.io/card-symbols/R.svg",
+  forest: "https://svgs.scryfall.io/card-symbols/G.svg",
 };
