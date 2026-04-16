@@ -1,6 +1,6 @@
-import clueHeading from "../../../assets/clue/clueHeading.png";
-import clueText from "../../../assets/clue/clueText.png";
-import closeBox from "../../../assets/clue/close.svg";
+import clueHeading from "/clue/clueHeading.png";
+import clueText from "/clue/clueText.png";
+import closeBox from "/clue/close.svg";
 import type { ReturnStructure } from "../../../types/types";
 
 interface ClueStateProps {
