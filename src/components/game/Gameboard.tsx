@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import EndState from "./alternateStates/EndState";
 import type { ReturnStructure } from "../../types/types";
 import { ClueState } from "./alternateStates/ClueState";
-import logo from "../../../public/Staple_Favicon.png";
+import logo from "/Staple_Favicon.png";
 import { GameInformation } from "./GameInformation";
 import { HowToPlay } from "./alternateStates/HowToPlay";
 
 const roundLimit = 10;
+const baseUrl = "http://localhost:3000"
 
 const Gameboard = () => {
   const [guessState, setGuessState] = useState<string[]>([]);
@@ -35,7 +36,7 @@ const Gameboard = () => {
 
   useEffect(() => {
     const fetchWord = async () => {
-      const response = await fetch("http://localhost:3000/todays_word");
+      const response = await fetch(`${baseUrl}/todays_word`);
       if (!response.ok) {
         console.log("Fetch Error");
       }
@@ -49,7 +50,7 @@ const Gameboard = () => {
   useEffect(() => {
     const fetchAllcards = async () => {
       try {
-        const response = await fetch("http://localhost:3000/allCards");
+        const response = await fetch(`${baseUrl}/allCards`);
         if (!response.ok) {
           console.log("Error returning fetch");
         }
