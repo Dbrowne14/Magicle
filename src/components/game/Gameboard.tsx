@@ -9,7 +9,7 @@ import { GameInformation } from "./GameInformation";
 import { HowToPlay } from "./alternateStates/HowToPlay";
 
 const roundLimit = 10;
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://staple-backend.onrender.com" //"http://localhost:3000"
 
 const Gameboard = () => {
   const [guessState, setGuessState] = useState<string[]>([]);

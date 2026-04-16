@@ -13,7 +13,7 @@ export const HowToPlay = () => {
         >
           {Object.entries(explainGame).map(([key, result]) => {
             console.log(result)
-            return <div className={`h-12 bold w-ful text-[0.8rem] p-2 rounded-2xl ${key === "match" ? "bg-highlightGreen" : key === "partial" ? "bg-highlightYellow" : "bg-highlightGrey"}`}>{result}</div>;
+            return <div key={key} className={`h-12 bold w-ful text-[0.8rem] p-2 rounded-2xl ${key === "match" ? "bg-highlightGreen" : key === "partial" ? "bg-highlightYellow" : "bg-highlightGrey"}`}>{result}</div>;
           })}
         </div>
     </div>

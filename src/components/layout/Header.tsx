@@ -1,9 +1,9 @@
 const Header = () => {
   const roundNumber = () => {
-    const startDate = new Date("2026-04-14");
+    const startDate = new Date("2026-04-16");
     const now = new Date();
     const diffMs = now.getTime() - startDate.getTime();
-    return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    return Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1; //base to 1 as first game is game 1
   };
 
   return (
