@@ -10,6 +10,53 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <!-- 1. Open the connection to the server early -->
+    <link rel="preconnect" href="https://scryfall.io" crossorigin />
+    <link rel="dns-prefetch" href="https://scryfall.io" />
+
+    <!-- 2. Force-load the 6 specific mana symbols -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://scryfall.io/card-symbols/C.svg"
+      type="image/svg+xml"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://scryfall.io/card-symbols/W.svg"
+      type="image/svg+xml"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://scryfall.io/card-symbols/U.svg"
+      type="image/svg+xml"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://scryfall.io/card-symbols/B.svg"
+      type="image/svg+xml"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://scryfall.io/card-symbols/R.svg"
+      type="image/svg+xml"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://scryfall.io/card-symbols/G.svg"
+      type="image/svg+xml"
+      crossorigin="anonymous"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Staple</title>
   </head>
