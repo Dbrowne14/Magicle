@@ -28,10 +28,9 @@ export const CardValue = ({ label, value }: CardValueProps) => {
     }
   };
   const handleValue = () => {
-    if (label === "price") {
-      return "$" + value;
+    if (label === "price" && typeof value === "number") {
+      return "$" + value.toFixed(2);
     }
-
     return value;
   };
 
