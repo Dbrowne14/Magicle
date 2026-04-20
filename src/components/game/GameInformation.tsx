@@ -8,15 +8,29 @@ export const GameInformation = ({round, setClueState}: {round: number, setClueSt
   return (
     <div className="flex flex-row items-center justify-between">
       <h2 className="w-full">Guess {round + 1} of 10</h2>
-      {round > 6 && (
-        <div
-          className={`flex justify-end w-full hover:cursor-pointer ${round === 7 ? "animate-pulse" : "animate-none"}`}
-        >
-          <h2 className="pr-2 text-white" onClick={handleClick}>
-            Use your clue token?
-          </h2>
-        </div>
-      )}
+{round > 6 && (
+  <div
+    className={`flex justify-end w-full pb-1 ${
+      round === 7 ? "animate-pulse" : ""
+    }`}
+  >
+    <button
+      onClick={handleClick}
+      className="
+        text-blue-300 
+        text-[0.8rem]
+        bg-blue-500/10 
+        border border-blue-400/30 
+        rounded-lg 
+        hover:bg-blue-500/20 
+        transition-all 
+        duration-200
+      "
+    >
+      Use your clue token
+    </button>
+  </div>
+)}
     </div>
   );
 };
