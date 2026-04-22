@@ -7,9 +7,10 @@ import { ClueState } from "./alternateStates/ClueState";
 import logo from "/Staple_Favicon.png";
 import { GameInformation } from "./GameInformation";
 import { HowToPlay } from "./alternateStates/HowToPlay";
+import { LoaderState } from "./alternateStates/LoaderState";
 
 const roundLimit = 10;
-const baseUrl = "https://staple-backend.onrender.com" //"http://localhost:3000"
+const baseUrl = "https://staple-backend.onrender.com" //"http://localhost:3000 for test routes"
 
 const Gameboard = () => {
   const [guessState, setGuessState] = useState<string[]>([]);
@@ -65,7 +66,9 @@ const Gameboard = () => {
   }, []);
 
   return (
+    
     <div className="h-full flex flex-col gap-8 justify-center items-center">
+      <LoaderState/>
       <div className="gameWidth flex flex-row items-center justify-center mt-10">
         <img src={logo} className="h-20" />
         <h1 className="text-headerOrange ">taple</h1>
