@@ -1,20 +1,20 @@
 import React from "react";
 
-const clueDisabled = (round: number) => {
+const ClueDisabled = ({ round }: { round: number }) => {
   return (
-    <div className="flex flex-row h-full justify-center items-center gap-0.5">
+    <div className="flex flex-row h-full justify-end items-center">
       <div className="h-fit">
         Clue token in{" "}
-        <span className="text-gray-500 italic pl-0.5">{7 - round}</span>
+        <span className="text-gray-500 italic font-bold pl-0.5">{7 - round}</span>
       </div>
-      <img src="/icons/locksymbol.svg" alt="lock" className="h-full p-1" />
+      <img src="/icons/locksymbol.svg" alt="lock" className="h-full py-1.5 pl-3 pr-1" />
     </div>
   );
 };
 
-const clueRevealed = () => {
-  <span>Use your clue token</span>
-}
+const ClueRevealed = () => {
+  return <span>Use your clue token</span>;
+};
 
 export const GameInformation = ({
   round,
@@ -23,7 +23,7 @@ export const GameInformation = ({
   round: number;
   setClueState: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const revealRound = round < 7;
+  const revealRound = round > 6;
   const handleClick = () => {
     setClueState((prev) => !prev);
   };
@@ -32,27 +32,20 @@ export const GameInformation = ({
       <h2 className="w-full">Guess {round + 1} of 10</h2>
 
       <div
-        className={`flex justify-end w-full pb-1 ${
-          !revealRound ? "animate-pulse" : ""
-        }`}
+        className="flex justify-end w-full pb-1"
       >
         <button
           onClick={handleClick}
-          disabled={revealRound}
-          className="
-        text-blue-300 
-        text-[0.8rem]
-        bg-blue-500/10 
-        border border-blue-400/30 
-        rounded-lg 
-        hover:bg-blue-500/20 
-        transition-all 
-        duration-200
-        h-10
-        w-40
-        "
+          disabled={!revealRound}
+          className={`
+          ${revealRound ? " text-blue-300 border-blue-400/30  bg-blue-500/10 animate-pulse hover:bg-blue-500/20 transition-all duration-200 border" : "hover:cursor-auto text-gray-500 bg-[#3c3b3b3d] tracking-wide blur-[0.3px]"}
+          text-[0.8rem]
+          rounded-lg 
+          h-9
+          w-40
+          p-1`}
         >
-          {revealRound ? clueDisabled(round) : clueRevealed}
+          {revealRound ? <ClueRevealed /> : <ClueDisabled round={round} />}
         </button>
       </div>
     </div>
