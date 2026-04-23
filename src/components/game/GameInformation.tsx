@@ -11,7 +11,7 @@ export const GameInformation = ({round, setClueState}: {round: number, setClueSt
 {round > 6 && (
   <div
     className={`flex justify-end w-full pb-1 ${
-      round === 7 ? "animate-pulse" : ""
+      round > 6 ? "animate-pulse" : ""
     }`}
   >
     <button
