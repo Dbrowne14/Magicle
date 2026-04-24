@@ -1,39 +1,44 @@
 import GameInput from "./GameInput";
 import GameOutput from "./GameOutput";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import EndState from "./alternateStates/EndState";
-import type { ReturnStructure } from "../../types/types";
 import { ClueState } from "./alternateStates/ClueState";
 import logo from "/Staple_Favicon.png";
 import { GameInformation } from "./GameInformation";
 import { HowToPlay } from "./alternateStates/HowToPlay";
 import { LoaderState } from "./alternateStates/LoaderState";
+import { useGameContext } from "../../context/GameContext";
 
-const roundLimit = 10;
-const baseUrl = "https://staple-backend.onrender.com" //"http://localhost:3000 for test routes"
+const ROUND_LIMIT = 10;
+const baseUrl = "https://staple-backend.onrender.com"; //"http://localhost:3000 for test routes"
 
 const Gameboard = () => {
-  const [guessState, setGuessState] = useState<string[]>([]);
-  const [endGame, setEndgame] = useState(false);
-  const [round, setRound] = useState<number>(0);
-  const [result, setResult] = useState("");
-  const [allCards, setAllCards] = useState<ReturnStructure[] | null>(null);
-  const [todaysWord, setTodaysWord] = useState<ReturnStructure | null>(null);
-  const [clueState, setClueState] = useState<boolean>(false);
+  const {
+    todaysWord,
+    round,
+    guess,
+    loadingState,
+    setLoadingState,
+    endGame,
+    setEndGame,
+    setResult,
+    setTodaysWord,
+    setAllCards,
+  } = useGameContext();
 
   useEffect(() => {
     if (!todaysWord) return;
-    if (round >= roundLimit) {
-      setEndgame(true);
+    if (round >= ROUND_LIMIT) {
+      setEndGame(true);
       setResult("Lose");
     }
-    if (guessState.includes(todaysWord?.name)) {
-      setEndgame(true);
+    if (guess.includes(todaysWord?.name)) {
+      setEndGame(true);
       setResult("Win");
     }
 
-    console.log("effect ran:", guessState);
-  }, [guessState, round]);
+    console.log("effect ran:", guess);
+  }, [guess, round]);
 
   useEffect(() => {
     const fetchWord = async () => {
@@ -66,27 +71,19 @@ const Gameboard = () => {
   }, []);
 
   return (
-    
     <div className="h-full flex flex-col gap-8 justify-center items-center">
-      <LoaderState/>
+      <LoaderState
+        loadingState={loadingState}
+        setLoadingState={setLoadingState}
+      />
       <div className="gameWidth flex flex-row items-center justify-center mt-10">
         <img src={logo} className="h-20" />
         <h1 className="text-headerOrange ">taple</h1>
       </div>
       <div className="flex flex-col h-full gameWidth gap-1">
-        <GameInformation round={round} setClueState={setClueState}/>
-        <GameInput
-          setGuessState={setGuessState}
-          guessState={guessState}
-          setRound={setRound}
-          endGame={endGame}
-          allCards={allCards}
-        />
-        <GameOutput
-          guessState={guessState}
-          allCards={allCards}
-          todaysWord={todaysWord}
-        />
+        <GameInformation />
+        <GameInput />
+        <GameOutput />
         {round === 1 && <HowToPlay />}
         {round === 0 && (
           <div className="flex flex-center">
@@ -101,12 +98,8 @@ const Gameboard = () => {
         )}
       </div>
       <ClueState
-        setClueState={setClueState}
-        todaysWord={todaysWord}
-        clueState={clueState}
-        round={round}
       />
-      {endGame && <EndState result={result} todaysWord={todaysWord} />}
+      {endGame && <EndState  />}
     </div>
   );
 };

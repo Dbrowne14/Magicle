@@ -1,15 +1,13 @@
+import { useGameContext } from "../../context/GameContext";
 import {GuessInfoLower} from "./gameCard/GuessInfoLower";
 import { GuessInfoUpper } from "./gameCard/GuessiInfoUpper";
 import type { ReturnStructure } from "../../types/types";
 
-type Output = {
-  guessState: string[];
-  allCards: ReturnStructure[] | null;
-  todaysWord: ReturnStructure | null;
-};
 
-const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
-  console.log("GuessState Output:", guessState);
+
+const GameOutput = () => {
+  const {guess, allCards} = useGameContext()
+  console.log("GuessState Output:", guess);
 
   function typedEntries<T extends object>(obj: T) {
     return Object.entries(obj) as {
@@ -19,7 +17,7 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
 
   return (
     <div className="flex flex-col gap-10">
-      {guessState.map((guess, key) => {
+      {guess.map((guess, key) => {
         if (!allCards) return;
 
         const guessData: ReturnStructure[] | undefined = allCards.filter(
@@ -57,7 +55,6 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
               key={guess}
               cardKey={guess}
               guess={guessStructure}
-              answer={todaysWord}
               isLatest={key === 0}
             />
 
@@ -79,7 +76,6 @@ const GameOutput = ({ guessState, allCards, todaysWord }: Output) => {
                       cardKey={cardKey}
                       label={cardKey}
                       value={value}
-                      answer={todaysWord}
                       isLatest={key === 0}
                     />
                   );

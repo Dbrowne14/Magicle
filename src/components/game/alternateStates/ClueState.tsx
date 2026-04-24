@@ -1,21 +1,12 @@
 import clueHeading from "/clue/clueHeading.png";
 import clueText from "/clue/clueText.png";
 import closeBox from "/clue/close.svg";
-import type { ReturnStructure } from "../../../types/types";
+import { useGameContext } from "../../../context/GameContext";
 
-interface ClueStateProps {
-  setClueState: React.Dispatch<React.SetStateAction<boolean>>;
-  todaysWord: ReturnStructure | null;
-  clueState: boolean;
-  round: number;
-}
 
-export const ClueState = ({
-  setClueState,
-  todaysWord,
-  clueState,
-  round,
-}: ClueStateProps) => {
+
+export const ClueState = () => {
+  const {todaysWord, round, clueState, setClueState } = useGameContext()
   return (
     <div
       className={`fixed flex-col overlay bg-[rgba(1,1,1,1)] hover:cursor-pointer gameWidth h-110 rounded-2xl items-center justify-center gap-1 py-2 ${clueState && round !== 10 ? "flex" : "hidden"}`}

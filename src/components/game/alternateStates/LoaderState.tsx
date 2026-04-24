@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, type SetStateAction } from "react";
 import dice from "../../../assets/dice.svg";
 
-export const LoaderState = () => {
-  const [loadingState, setLoadingState] = useState(true);
+
+export const LoaderState = ({loadingState, setLoadingState}:{loadingState:boolean, setLoadingState: React.Dispatch<SetStateAction<boolean>> }) => {
 
  useEffect(() => {
     const timer = setTimeout(() => {

@@ -3,6 +3,7 @@ import { CardValue } from "./CardValue";
 import type { Value, Input } from "../../../types/types";
 import { renameLabel, isSame, isSimilar } from "../../../utilities/utilityFns";
 import { useState, useEffect } from "react";
+import { useGameContext } from "../../../context/GameContext";
 import { ArrowUp, ArrowDown } from "lucide-react";
 
 
@@ -16,7 +17,8 @@ const variableOrange = {
 type VariableOrange = keyof typeof variableOrange;
 type validInCard = Extract<VariableOrange, keyof ReturnStructure | null>;
 
-export const GuessInfoLower = ({ cardKey, value, label, answer, isLatest }: Input) => {
+export const GuessInfoLower = ({ cardKey, value, label, isLatest }: Input) => {
+  const {todaysWord: answer} = useGameContext()
   if(!answer) return;
   const lookUpKey = answer[cardKey];
   const [flip, setFlip] = useState(false);

@@ -1,11 +1,11 @@
 import type { ReturnStructure } from "../../../types/types";
+import { useGameContext } from "../../../context/GameContext";
 import { capitalizeFirst } from "../../../utilities/utilityFns";
 import { useState, useEffect } from "react";
 
 type CardName = {
   cardKey: string;
   guess: ReturnStructure;
-  answer: ReturnStructure | null;
   isLatest: boolean;
 };
 
@@ -14,12 +14,8 @@ const handleType = (type: string[]) => {
   return capitalisedTypes.join(" ");
 };
 
-export const GuessInfoUpper = ({
-  cardKey,
-  guess,
-  answer,
-  isLatest,
-}: CardName) => {
+export const GuessInfoUpper = ({ cardKey, guess, isLatest }: CardName) => {
+  const { todaysWord: answer } = useGameContext();
   const [flipBuckets, setFlipBuckets] = useState<string[]>([]);
   const { rarity, type, name, islegendary } = guess;
   if (!answer) return null;

@@ -1,23 +1,12 @@
 import { useState, useEffect } from "react";
-import type { ReturnStructure } from "../../types/types";
+import { useGameContext } from "../../context/GameContext";
 
-type GuessProps = {
-  guessState: string[];
-  setGuessState: React.Dispatch<React.SetStateAction<string[]>>;
-  setRound: React.Dispatch<React.SetStateAction<number>>;
-  endGame: boolean;
-  allCards: ReturnStructure[] | null;
-};
+;
 
-const GameInput = ({
-  guessState,
-  setGuessState,
-  setRound,
-  endGame,
-  allCards,
-}: GuessProps) => {
+const GameInput = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [roundGuess, setRoundGuess] = useState<string>("");
+  const {allCards, guess, setGuess, endGame, setRound} = useGameContext();
 
   useEffect(() => {
     if (!roundGuess) {
@@ -29,7 +18,7 @@ const GameInput = ({
     const data = allCards.map((card) => card.name);
 
     const dataNewSuggestions = data.filter(
-      (item) => !guessState.includes(item),
+      (item) => !guess.includes(item),
     );
     console.log("filtereddata", dataNewSuggestions);
 
@@ -41,9 +30,9 @@ const GameInput = ({
   }, [roundGuess]);
 
   const handleGuess = (guess: string) => {
-    setGuessState((prev) => [guess, ...prev]);
+    setGuess((prev) => [guess, ...prev]);
     setRound((prev) => prev + 1);
-    console.log("GuessState Input:", guessState);
+    console.log("GuessState Input:", guess);
     setRoundGuess("");
   };
 

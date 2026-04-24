@@ -1,12 +1,9 @@
-type EndState = {
-  result: string;
-  todaysWord: {
-    name: string;
-    img: string;
-  } | null;
-};
+import { useGameContext } from "../../../context/GameContext";
 
-const EndState = ({ result, todaysWord }: EndState) => {
+
+
+const EndState = () => {
+  const{result, todaysWord} = useGameContext()
   return (
     <div className="fixed flex flex-col overlay bg-[rgba(1,1,1,0.95)] w-80 h-100 rounded-2xl  items-center justify-center gap-4 p-4">
       <h2>You {result}</h2>

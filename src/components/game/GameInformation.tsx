@@ -1,4 +1,4 @@
-import React from "react";
+import { useGameContext } from "../../context/GameContext";
 
 const ClueDisabled = ({ round }: { round: number }) => {
   return (
@@ -16,13 +16,8 @@ const ClueRevealed = () => {
   return <span>Use your clue token</span>;
 };
 
-export const GameInformation = ({
-  round,
-  setClueState,
-}: {
-  round: number;
-  setClueState: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+export const GameInformation = () => {
+  const {round, setClueState} = useGameContext()
   const revealRound = round > 6;
   const handleClick = () => {
     setClueState((prev) => !prev);
