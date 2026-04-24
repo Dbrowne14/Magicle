@@ -17,7 +17,6 @@ const Gameboard = () => {
     todaysWord,
     round,
     guess,
-    loadingState,
     setLoadingState,
     endGame,
     setEndGame,
@@ -49,7 +48,7 @@ const Gameboard = () => {
       const data = await response.json();
       setTodaysWord(data);
     };
-
+    setLoadingState(false)
     fetchWord();
   }, []);
 
@@ -73,8 +72,6 @@ const Gameboard = () => {
   return (
     <div className="h-full flex flex-col gap-8 justify-center items-center">
       <LoaderState
-        loadingState={loadingState}
-        setLoadingState={setLoadingState}
       />
       <div className="gameWidth flex flex-row items-center justify-center mt-10">
         <img src={logo} className="h-20" />
