@@ -8,71 +8,51 @@ import { GameInformation } from "./GameInformation";
 import { HowToPlay } from "./alternateStates/HowToPlay";
 import { LoaderState } from "./alternateStates/LoaderState";
 import { useGameContext } from "../../context/GameContext";
+import { fetchAllcards, fetchWord } from "../../data/dataFetches";
 
-const ROUND_LIMIT = 10;
-const baseUrl = "https://staple-backend.onrender.com"; //"http://localhost:3000 for test routes"
+const MIN_LOADING_TIME = 1500;
 
 const Gameboard = () => {
   const {
-    todaysWord,
     round,
-    guess,
     setLoadingState,
     endGame,
-    setEndGame,
-    setResult,
     setTodaysWord,
     setAllCards,
   } = useGameContext();
 
+  //fetch todays word and allcard data from database
   useEffect(() => {
-    if (!todaysWord) return;
-    if (round >= ROUND_LIMIT) {
-      setEndGame(true);
-      setResult("Lose");
-    }
-    if (guess.includes(todaysWord?.name)) {
-      setEndGame(true);
-      setResult("Win");
-    }
+    const loadData = async () => {
+      setLoadingState(true);
+      const start = Date.now();
 
-    console.log("effect ran:", guess);
-  }, [guess, round]);
+      const word = await fetchWord();
+      setTodaysWord(word);
 
-  useEffect(() => {
-    const fetchWord = async () => {
-      const response = await fetch(`${baseUrl}/todays_word`);
-      if (!response.ok) {
-        console.log("Fetch Error");
-      }
-      const data = await response.json();
-      setTodaysWord(data);
-    };
-    setLoadingState(false)
-    fetchWord();
-  }, []);
+      const allCards = await fetchAllcards();
+      setAllCards(allCards);
 
-  useEffect(() => {
-    const fetchAllcards = async () => {
-      try {
-        const response = await fetch(`${baseUrl}/allCards`);
-        if (!response.ok) {
-          console.log("Error returning fetch");
-        }
-        const data = await response.json();
-        console.log(data);
-        setAllCards(data);
-      } catch (error) {
-        console.log(error);
+      const elapsed = Date.now() - start;
+      const remaining = MIN_LOADING_TIME - elapsed;
+
+      //setting a minimum loading state dependent on time to fetch
+      if (remaining > 0) {
+        setTimeout(() => {
+          setLoadingState(false);
+        }, remaining);
+      } else {
+        setLoadingState(false);
       }
     };
-    fetchAllcards();
+
+    setLoadingState(false);
+    loadData();
   }, []);
 
   return (
     <div className="h-full flex flex-col gap-8 justify-center items-center">
-      <LoaderState
-      />
+      <LoaderState />
       <div className="gameWidth flex flex-row items-center justify-center mt-10">
         <img src={logo} className="h-20" />
         <h1 className="text-headerOrange ">taple</h1>
@@ -94,9 +74,8 @@ const Gameboard = () => {
           </div>
         )}
       </div>
-      <ClueState
-      />
-      {endGame && <EndState  />}
+      <ClueState />
+      {endGame && <EndState />}
     </div>
   );
 };
