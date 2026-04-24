@@ -1,5 +1,4 @@
 import { useGameContext } from "../../../context/GameContext";
-import dice from "../../../assets/dice.svg";
 
 export const LoaderState = () => {
   const { loadingState } = useGameContext();
@@ -11,7 +10,7 @@ export const LoaderState = () => {
     >
       <div className="loader absolute top-3/5 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <img
-          src={dice}
+          src={"/icons/dice.svg"}
           className=" relative z-20 top-4/6 left-1/2 -translate-x-1/2 -translate-y-1/2 h-20"
         />
       </div>
